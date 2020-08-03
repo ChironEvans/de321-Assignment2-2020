@@ -1,2 +1,2 @@
 ### HELP ###
-This file will contain all help information for commands and options
+This file will contain all help information for commands and options.
