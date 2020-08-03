@@ -1,3 +1,13 @@
 ### HELP ###
 This file will contain all help information for commands and options.
-gidday
+
+help    shows this file
+Additional arguments: 
+    -command    shows help info related to a specific command
+
+load [file]   loads es6+ object(s) into the program from a single file
+Additional arguments:
+    -d [directory]  loads es6+ objects from files within a directory (e.g. load -d D:\DIR)
+    -mdb [name]   loads es6+ objects from a previously saved mongoDB entry
+    -sdb [name]   loads es6+ objects from a previously saved SQL DB entry
+
