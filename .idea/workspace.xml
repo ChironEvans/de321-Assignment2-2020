@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4813488-76bc-4018-957d-6140c0f14720" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test-nosejs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test-pyreverse.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +32,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test-nosejs">
+    <configuration name="test-nosejs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="de321-Assignment2-2020" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -43,7 +45,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test-nosejs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test-pyreverse" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="de321-Assignment2-2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\ActualDocuments\Ara2020\BCDE321_Adv\de321-Assignment2-2020\test-pyreverse.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -54,7 +77,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test" />
+        <item itemvalue="Python.test-nosejs" />
+        <item itemvalue="Python.test-pyreverse" />
       </list>
     </recent_temporary>
   </component>
@@ -92,30 +116,30 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added basic Pickle implementation using Pickler object" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="890" y="295" key="CommitChangelistDialog2" timestamp="1596601565274">
+    <state x="890" y="295" key="CommitChangelistDialog2" timestamp="1596755877626">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="890" y="295" key="CommitChangelistDialog2/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596601565274" />
-    <state width="2539" height="402" key="GridCell.Tab.0.bottom" timestamp="1596616770020">
+    <state x="890" y="295" key="CommitChangelistDialog2/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596755877626" />
+    <state width="1257" height="401" key="GridCell.Tab.0.bottom" timestamp="1596755038877">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="402" key="GridCell.Tab.0.bottom/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596616770020" />
-    <state width="2539" height="402" key="GridCell.Tab.0.center" timestamp="1596616770020">
+    <state width="1257" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596755038877" />
+    <state width="1257" height="401" key="GridCell.Tab.0.center" timestamp="1596755038877">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="402" key="GridCell.Tab.0.center/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596616770020" />
-    <state width="2539" height="402" key="GridCell.Tab.0.left" timestamp="1596616770020">
+    <state width="1257" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596755038877" />
+    <state width="1257" height="401" key="GridCell.Tab.0.left" timestamp="1596755038877">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="402" key="GridCell.Tab.0.left/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596616770020" />
-    <state width="2539" height="402" key="GridCell.Tab.0.right" timestamp="1596616770020">
+    <state width="1257" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596755038877" />
+    <state width="1257" height="401" key="GridCell.Tab.0.right" timestamp="1596755038877">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2539" height="402" key="GridCell.Tab.0.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596616770020" />
-    <state x="782" y="343" key="SettingsEditor" timestamp="1596616319876">
+    <state width="1257" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596755038877" />
+    <state x="298" y="311" key="SettingsEditor" timestamp="1596754282604">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="782" y="343" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596616319876" />
+    <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596754282604" />
     <state x="1615" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1596597314433">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

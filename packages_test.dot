@@ -1,0 +1,6 @@
+digraph "packages_test" {
+charset="utf-8"
+rankdir=BT
+"0" [label="test", shape="box"];
+"1" [label="test.test_funcs_match", shape="box"];
+}
