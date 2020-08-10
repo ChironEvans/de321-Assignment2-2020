@@ -1,0 +1,25 @@
+# JS Class
+class {*}
+
+class\s\w{3,}
+
+
+#js attributes
+this.*/n
+[sp][sp][sp][sp]*/n
+[sp][sp][sp][sp]*[sp]
+[sp][sp][sp][sp]*=
+
+this.\w{1,}
+
+# js function
+[sp][sp][a-zA-Z]1+ (*) {*}
+[sp][sp][a-zA-Z]1+ (*) => {*}
+
+\s{2}\w{2,}\s\(.*\)
+
+
+# js association
+*new[sp]*[sp](0or1)=[sp](0or1)*(
+
+new\s\w{3,}\(.*\)
