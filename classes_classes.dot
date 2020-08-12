@@ -1,4 +1,4 @@
-digraph "classes_test" {
+digraph "classes_classes" {
 charset="utf-8"
 rankdir=BT
 "0" [label="{ASTWalker|handler\l|get_callbacks(node)\lleave(node)\lvisit(node)\lwalk(node, _done)\l}", shape="record"];

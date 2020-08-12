@@ -1,4 +1,4 @@
-digraph "packages_test" {
+digraph "packages_classes" {
 charset="utf-8"
 rankdir=BT
 "0" [label="test", shape="box"];
