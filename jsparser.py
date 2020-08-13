@@ -95,7 +95,6 @@ class JSParser():
             class_index = {}
             for js_class in self.js_classnames:
                 class_name = self.js_classnames[class_num]
-                print(class_name)
                 class_attrs = self.js_attributes[class_name]
                 class_methods = self.js_methods[class_name]
                 class_index[class_name] = class_num
