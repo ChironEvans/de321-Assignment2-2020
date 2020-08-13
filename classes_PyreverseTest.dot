@@ -1,5 +1,0 @@
-digraph "classes_PyreverseTest" {
-charset="utf-8"
-rankdir=BT
-"0" [label="{testMatch|\l|test_display()\ltest_info()\l}", shape="record"];
-}
