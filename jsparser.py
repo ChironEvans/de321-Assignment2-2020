@@ -18,6 +18,8 @@ class JSParser():
         self.run_regex()
 
     def run_regex(self):
+        """Begins the process of analysing a file or directory of JS files. Called at initialization, should not be
+        called directly"""
         if os.path.isdir(self.target):
             for file in os.listdir(self.target):
                 if file.endswith('.js'):
@@ -28,6 +30,8 @@ class JSParser():
                 self.analyse_file(self.target)
 
     def analyse_file(self, file):
+        """Analyses a single JS file, called by the run_regex command on initializaiton, should not be called directly
+        """
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
@@ -89,6 +93,7 @@ class JSParser():
         return True
 
     def write_dotfile(self):
+        """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
         with open("output\\classes.dot", "w+") as dot_target:
             dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
             class_num = 0
@@ -125,6 +130,7 @@ class JSParser():
         return True
 
     def render_png(self):
+        """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
         # Convert a .dot file to .png
         os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
         render('dot', 'png', 'output\\classes.dot')
