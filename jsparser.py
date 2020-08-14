@@ -7,7 +7,7 @@ from os import path, listdir
 from graphviz import render
 
 
-class JSParser():
+class JSParser:
 
     def __init__(self, target='input\\'):
         self.target = target
@@ -15,11 +15,10 @@ class JSParser():
         self.js_attributes = {}
         self.js_assocs = {}
         self.js_methods = {}
-        self.run_regex()
 
     def run_regex(self):
-        """Begins the process of analysing a file or directory of JS files. Called at initialization, should not be
-        called directly"""
+        """Begins the process of analysing a file or directory of JS files. No arguments taken"""
+        print("self.target: " + self.target)
         if os.path.isdir(self.target):
             for file in os.listdir(self.target):
                 if file.endswith('.js'):
@@ -28,10 +27,19 @@ class JSParser():
         elif os.path.isfile(self.target):
             if self.target.endswith('.js'):
                 self.analyse_file(self.target)
+            else:
+                print("target no js file")
+                return False
+        else:
+            print(self.target)
+            print('else triggered')
+            return False
+        return True
 
     def analyse_file(self, file):
         """Analyses a single JS file, called by the run_regex command on initializaiton, should not be called directly
         """
+        print("running analysis")
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
@@ -94,48 +102,58 @@ class JSParser():
 
     def write_dotfile(self):
         """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
-        with open("output\\classes.dot", "w+") as dot_target:
-            dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
-            class_num = 0
-            class_index = {}
-            for js_class in self.js_classnames:
-                class_name = self.js_classnames[class_num]
-                class_attrs = self.js_attributes[class_name]
-                class_methods = self.js_methods[class_name]
-                class_index[class_name] = class_num
-                output_string = f'"{class_num}" [label="' + '{' + f'{class_name}|'
+        if os.path.isfile("output\\classes.dot"):
+            with open("output\\classes.dot", "w+") as dot_target:
+                dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
+                class_num = 0
+                class_index = {}
+                for js_class in self.js_classnames:
+                    class_name = self.js_classnames[class_num]
+                    class_attrs = self.js_attributes[class_name]
+                    class_methods = self.js_methods[class_name]
+                    class_index[class_name] = class_num
+                    output_string = f'"{class_num}" [label="' + '{' + f'{class_name}|'
 
-                for attr in class_attrs:
-                    output_string += f'{attr}\\l'
+                    for attr in class_attrs:
+                        output_string += f'{attr}\\l'
 
-                output_string += '|'
+                    output_string += '|'
 
-                for method in class_methods:
-                    output_string += f'{method}\\l'
+                    for method in class_methods:
+                        output_string += f'{method}\\l'
 
-                output_string += '}", shape="record"];\n'
-                dot_target.write(output_string)
-                class_num += 1
+                    output_string += '}", shape="record"];\n'
+                    dot_target.write(output_string)
+                    class_num += 1
 
-            for primary in class_index:
-                class_assocs = self.js_assocs[primary]
-                for assoc in class_assocs:
-                    if assoc in class_index:
-                        assoc_index = class_index[assoc]
-                        dot_target.write(
-                            f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
+                for primary in class_index:
+                    class_assocs = self.js_assocs[primary]
+                    for assoc in class_assocs:
+                        if assoc in class_index:
+                            assoc_index = class_index[assoc]
+                            dot_target.write(
+                                f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
 
-            dot_target.write("}\n")
-        self.render_png()
-        return True
+                dot_target.write("}\n")
+            if self.render_png():
+                return True
+            else:
+                return False
+        else:
+            return False
 
     def render_png(self):
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
         # Convert a .dot file to .png
         os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
-        render('dot', 'png', 'output\\classes.dot')
+        if os.path.isfile('output\\classes.dot'):
+            render('dot', 'png', 'output\\classes.dot')
+            return True
+        else:
+            return False
 
 
 if __name__ == '__main__':
     js_test = JSParser()
+    js_test.run_regex()
     js_test.write_dotfile()

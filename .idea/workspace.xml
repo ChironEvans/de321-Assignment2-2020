@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4813488-76bc-4018-957d-6140c0f14720" name="Default Changelist" comment="Created a fil" />
+    <list default="true" id="f4813488-76bc-4018-957d-6140c0f14720" name="Default Changelist" comment="Created a fil">
+      <change afterPath="$PROJECT_DIR$/quitter-test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quitter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/jsparser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/classes.dot" beforeDir="false" afterPath="$PROJECT_DIR$/output/classes.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/classes.dot.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/classes.dot.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +35,28 @@
     <property name="last_opened_file_path" value="G:/PycharmProjects/DiscBot" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.jsparser">
+  <component name="RunManager" selected="Python.quitter">
+    <configuration name="jsparser (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="de321-Assignment2-2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/jsparser.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="jsparser" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="de321-Assignment2-2020" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -42,6 +70,48 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="D:\ActualDocuments\Ara2020\BCDE321_Adv\de321-Assignment2-2020\jsparser.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="quitter-test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="de321-Assignment2-2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/quitter-test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="quitter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="de321-Assignment2-2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/quitter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -71,54 +141,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test-pyreverse (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="de321-Assignment2-2020" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test-pyreverse.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test-pyreverse" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="de321-Assignment2-2020" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\ActualDocuments\Ara2020\BCDE321_Adv\de321-Assignment2-2020\test-pyreverse.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.quitter" />
+        <item itemvalue="Python.jsparser (1)" />
+        <item itemvalue="Python.quitter-test" />
         <item itemvalue="Python.jsparser" />
         <item itemvalue="Python.test-nosejs" />
-        <item itemvalue="Python.test-pyreverse (1)" />
-        <item itemvalue="Python.test-pyreverse" />
       </list>
     </recent_temporary>
   </component>
@@ -156,6 +185,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added basic Pickle implementation using Pickler object" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1676" y="507" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597363303011">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1676" y="507" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597363303011" />
     <state x="890" y="295" key="CommitChangelistDialog2" timestamp="1596755877626">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -164,38 +197,42 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1700" y="459" key="FileChooserDialogImpl/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597359585047" />
-    <state width="1259" height="402" key="GridCell.Tab.0.bottom" timestamp="1597358633328">
+    <state width="1269" height="256" key="GridCell.Tab.0.bottom" timestamp="1597367883298">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1259" height="402" key="GridCell.Tab.0.bottom/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597358633328" />
+    <state width="1269" height="256" key="GridCell.Tab.0.bottom/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597367883298" />
     <state width="1257" height="400" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="1259" height="402" key="GridCell.Tab.0.center" timestamp="1597358633328">
+    <state width="1269" height="256" key="GridCell.Tab.0.center" timestamp="1597367883298">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1259" height="402" key="GridCell.Tab.0.center/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597358633328" />
+    <state width="1269" height="256" key="GridCell.Tab.0.center/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597367883298" />
     <state width="1257" height="400" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="1259" height="402" key="GridCell.Tab.0.left" timestamp="1597358633328">
+    <state width="1269" height="256" key="GridCell.Tab.0.left" timestamp="1597367883298">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1259" height="402" key="GridCell.Tab.0.left/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597358633328" />
+    <state width="1269" height="256" key="GridCell.Tab.0.left/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597367883298" />
     <state width="1257" height="400" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="1259" height="402" key="GridCell.Tab.0.right" timestamp="1597358633328">
+    <state width="1269" height="256" key="GridCell.Tab.0.right" timestamp="1597367883298">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1259" height="402" key="GridCell.Tab.0.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597358633328" />
+    <state width="1269" height="256" key="GridCell.Tab.0.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597367883298" />
     <state width="1257" height="400" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state x="298" y="311" key="SettingsEditor" timestamp="1596754282604">
+    <state x="298" y="311" key="SettingsEditor" timestamp="1597365366975">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1596754282604" />
-    <state x="1615" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1597354961858">
+    <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597365366975" />
+    <state x="343" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1597366131789">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1615" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597354961858" />
+    <state x="343" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597366131789" />
     <state x="1615" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597198174353" />
     <state x="909" y="397" width="742" height="606" key="find.popup" timestamp="1597288729607">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="909" y="397" width="742" height="606" key="find.popup/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597288729607" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1597364659254">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597364659254" />
   </component>
 </project>
