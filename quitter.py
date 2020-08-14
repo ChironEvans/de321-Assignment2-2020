@@ -4,7 +4,7 @@ from jsparser import JSParser
 from PIL import Image
 
 
-class Quitter(Cmd):
+class ParserCLI(Cmd):
     def __init__(self):
         Cmd.__init__(self)
         self.prompt = ">>> "
@@ -35,7 +35,7 @@ class Quitter(Cmd):
 
 
 if __name__ == "__main__":
-    quitter = Quitter()
-    quitter.cmdloop()
+    cli = ParserCLI()
+    cli.cmdloop()
 
 
