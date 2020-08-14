@@ -79,7 +79,7 @@ def run_regex(file):
                 associations_raw = re.findall("new\s\w{3,}\(", js_file_split[i])
                 associations_cleaned = set([])
                 for assoc in associations_raw:
-                    associations_cleaned.add(assoc.reaplace("new ", '').replace("(", ''))
+                    associations_cleaned.add(assoc.replace("new ", '').replace("(", ''))
                 js_assocs[classname] = associations_cleaned
             else:
                 bad_sectors.append(i)

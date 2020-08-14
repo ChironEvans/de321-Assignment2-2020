@@ -1,16 +1,15 @@
 # Code by Chiron Evans
 import pickle
-import this
 
 
 class Pickler:
     def __init__(self, pickle_name='last_pickle'):
-        this.name = pickle_name
-        this.filename = f'{this.name}.p'
+        self.name = pickle_name
+        self.filename = f'{self.name}.p'
 
     def preserve(self, an_object):
-        this.cucumber = an_object
-        pickle.dump(this.cucumber, open(this.filename, "wb"))
+        self.cucumber = an_object
+        pickle.dump(self.cucumber, open(self.filename, "wb"))
 
     def load(self):
-        this.cucumber = pickle.load(open(this.filename, "rb"))
+        self.cucumber = pickle.load(open(self.filename, "rb"))
