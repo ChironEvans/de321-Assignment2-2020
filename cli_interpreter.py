@@ -52,11 +52,15 @@ class ParserCLI(Cmd):
                     print(save_string)
 
                     m_cursor = MongoCursor()
-                    m_cursor.add_entry(name, save_string)
+                    if not m_cursor.connection():
+                        print("Server connection error timed out")
+                    else:
+                        m_cursor.add_entry(name, save_string)
                 else:
                     print("file to be saved does not exist, please analyse a file first")
 
             if target == 'sdb':
+                # SQL Code by Liam
                 # Do SQL things
                 pass
             if target == 'p':
@@ -73,10 +77,20 @@ class ParserCLI(Cmd):
 
         if target is not None:
             if target == 'mdb':
-                # Do Mongo Things
-                pass
+                m_cursor = MongoCursor()
+                if not m_cursor.connection():
+                    print("Server connection error timed out")
+                else:
+                    m_result = m_cursor.fetch_entry(name)
+                    if m_result:
+                        print(f'{name} entry successfully loaded')
+                        with open("output\\classes.dot", "w+") as dot_target:
+                            dot_target.write(m_result['data'])
+                    else:
+                        print(f'Entry {name} not found.')
 
             if target == 'sdb':
+                # SQL Code by Liam
                 # Do SQL things
                 pass
             if target == 'p':
@@ -84,5 +98,3 @@ class ParserCLI(Cmd):
                 pass
         else:
             print("Error: No argument given")
-
-             

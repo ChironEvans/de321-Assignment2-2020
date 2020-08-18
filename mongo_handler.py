@@ -50,12 +50,6 @@ class MongoCursor:
         try:
             self.client.server_info()
         except pymongo.errors.ServerSelectionTimeoutError:
-            print("Server connection error timed out")
             return False
-        else:
-            return True
+        return True
 
-
-if __name__ == '__main__':
-    mon_curs = MongoCursor()
-    mon_curs.connection()
