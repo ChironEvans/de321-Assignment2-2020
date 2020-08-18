@@ -22,7 +22,8 @@ class JSParser:
         if os.path.isdir(self.target):
             for file in os.listdir(self.target):
                 if file.endswith('.js'):
-                    self.analyse_file(self.target + file)
+                    print("running file from dir")
+                    self.analyse_file(self.target + '\\' + file)
 
         elif os.path.isfile(self.target):
             if self.target.endswith('.js'):
@@ -40,6 +41,7 @@ class JSParser:
         """Analyses a single JS file, called by the run_regex command on initializaiton, should not be called directly
         """
         print("running analysis")
+        print("File: " + file)
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
@@ -102,45 +104,43 @@ class JSParser:
 
     def write_dotfile(self):
         """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
-        if os.path.isfile("output\\classes.dot"):
-            with open("output\\classes.dot", "w+") as dot_target:
-                dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
-                class_num = 0
-                class_index = {}
-                for js_class in self.js_classnames:
-                    class_name = self.js_classnames[class_num]
-                    class_attrs = self.js_attributes[class_name]
-                    class_methods = self.js_methods[class_name]
-                    class_index[class_name] = class_num
-                    output_string = f'"{class_num}" [label="' + '{' + f'{class_name}|'
+        with open("output\\classes.dot", "w+") as dot_target:
+            dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
+            class_num = 0
+            class_index = {}
+            for js_class in self.js_classnames:
+                class_name = self.js_classnames[class_num]
+                class_attrs = self.js_attributes[class_name]
+                class_methods = self.js_methods[class_name]
+                class_index[class_name] = class_num
+                output_string = f'"{class_num}" [label="' + '{' + f'{class_name}|'
 
-                    for attr in class_attrs:
-                        output_string += f'{attr}\\l'
+                for attr in class_attrs:
+                    output_string += f'{attr}\\l'
 
-                    output_string += '|'
+                output_string += '|'
 
-                    for method in class_methods:
-                        output_string += f'{method}\\l'
+                for method in class_methods:
+                    output_string += f'{method}\\l'
 
-                    output_string += '}", shape="record"];\n'
-                    dot_target.write(output_string)
-                    class_num += 1
+                output_string += '}", shape="record"];\n'
+                dot_target.write(output_string)
+                class_num += 1
 
-                for primary in class_index:
-                    class_assocs = self.js_assocs[primary]
-                    for assoc in class_assocs:
-                        if assoc in class_index:
-                            assoc_index = class_index[assoc]
-                            dot_target.write(
-                                f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
+            for primary in class_index:
+                class_assocs = self.js_assocs[primary]
+                for assoc in class_assocs:
+                    if assoc in class_index:
+                        assoc_index = class_index[assoc]
+                        dot_target.write(
+                            f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
 
-                dot_target.write("}\n")
-            if self.render_png():
-                return True
-            else:
-                return False
+            dot_target.write("}\n")
+        if self.render_png():
+            return True
         else:
             return False
+
 
     def render_png(self):
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""

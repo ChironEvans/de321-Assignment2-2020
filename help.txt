@@ -5,15 +5,18 @@ help [arg]   shows this file
 Additional arguments: 
     -[command]    shows help info related to a specific command
 
-load [arg] [file]   loads & converts es6+ object(s) into the program from a single file
+analyse [file/dir]  loads analysis objects from local file/directory (e.g. analyse -f D:\DIR)
+
+load [arg] [file]   loads analysis object(s) into the program from saved location
 Additional arguments:
-    -d [directory]  loads & converts es6+ objects from files within a directory (e.g. load -d D:\DIR)
-    -mdb [name]   loads & converts es6+ objects from a previously saved mongoDB entry
-    -sdb [name]   loads & converts es6+ objects from a previously saved SQL DB entry
+    -p [name]     loads analysis objects from a previously saved pickle file
+    -mdb [name]   loads analysis objects from a previously saved mongoDB entry
+    -sdb [name]   loads analysis objects from a previously saved SQL DB entry
 
 save [arg] [name] saves a loaded dataset to a database
 Requires an argument:
     -mdb    saves to mongoDB
     -sdb    saves to SQL DB
+    -p      saves to a pickle file
 
 analyze     outputs a UML class diagram of the imported code
