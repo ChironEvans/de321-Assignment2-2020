@@ -60,6 +60,7 @@ class ParserCLI(Cmd):
                     print("file to be saved does not exist, please analyse a file first")
 
             if target == 'sdb':
+                # SQL Code by Liam
                 # Do SQL things
                 pass
             if target == 'p':
@@ -89,6 +90,7 @@ class ParserCLI(Cmd):
                         print(f'Entry {name} not found.')
 
             if target == 'sdb':
+                # SQL Code by Liam
                 # Do SQL things
                 pass
             if target == 'p':
