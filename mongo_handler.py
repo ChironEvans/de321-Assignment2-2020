@@ -1,3 +1,4 @@
+# Code by Chiron Evans
 import pymongo
 
 
@@ -11,7 +12,7 @@ class MongoCursor:
     def add_entry(self, name, payload):
         """Adds an entry to a MongoDB Database, Takes an arbitrary entry name & a payload.
         Payload must be a dictionary of information gathered from an analysed JS file"""
-        query = self.db.jparser.analysed.update_one(payload, upsert=True)
+        query = self.db.jparser.analysed.update_one({'name': name}, {'data': payload}, upsert=True)
 
         if query.modified_count > 0:
             return True

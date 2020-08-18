@@ -3,6 +3,7 @@ import sys
 from cmd import Cmd
 from jsparser import JSParser
 from PIL import Image
+from mongo_handler import MongoCursor
 
 
 class ParserCLI(Cmd):
@@ -36,11 +37,25 @@ class ParserCLI(Cmd):
         else:
             print('DOT file not present')
 
-    def do_save(self, target=None):
+    def do_save(self, target=None, name='default'):
+        """Saves loaded analysis, takes 2 arguments of the name and place to save the file. p for pickle, mdb for MongoDB,
+        sdb for MySQL DB.
+        Name argument optional.
+        Example: save mdb filename"""
+
         if target is not None:
             if target == 'mdb':
-                # Do mongo things
-                pass
+                if os.path.isfile('output\\classes.dot'):
+                    save_string = ''
+                    with open("output\\classes.dot", "r") as read_target:
+                        save_string = read_target;
+                    print(save_string)
+
+                    m_cursor = MongoCursor()
+                    m_cursor.add_entry(name, save_string)
+                else:
+                    print("file to be saved does not exist, please analyse a file first")
+
             if target == 'sdb':
                 # Do SQL things
                 pass
@@ -50,11 +65,17 @@ class ParserCLI(Cmd):
         else:
             print("Error: No argument given")
 
-    def do_load(selfself, target=None):
+    def do_load(self, target=None, name='default'):
+        """Saves loaded analysis, takes 2 arguments of the name and place to load the file from. p for pickle, mdb for MongoDB,
+                sdb for MySQL DB"
+                Name argument optional.
+                Example: load mdb filename"""
+
         if target is not None:
             if target == 'mdb':
-                # Do mongo things
+                # Do Mongo Things
                 pass
+
             if target == 'sdb':
                 # Do SQL things
                 pass
@@ -64,9 +85,4 @@ class ParserCLI(Cmd):
         else:
             print("Error: No argument given")
 
-
-if __name__ == "__main__":
-    cli = ParserCLI()
-    cli.cmdloop()
-
-
+             
