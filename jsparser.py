@@ -7,7 +7,7 @@ from os import path, listdir
 from graphviz import render
 
 
-class JSParser():
+class JSParser:
 
     def __init__(self, target='input\\'):
         self.target = target
@@ -15,23 +15,33 @@ class JSParser():
         self.js_attributes = {}
         self.js_assocs = {}
         self.js_methods = {}
-        self.run_regex()
 
     def run_regex(self):
-        """Begins the process of analysing a file or directory of JS files. Called at initialization, should not be
-        called directly"""
+        """Begins the process of analysing a file or directory of JS files. No arguments taken"""
+        print("self.target: " + self.target)
         if os.path.isdir(self.target):
             for file in os.listdir(self.target):
                 if file.endswith('.js'):
-                    self.analyse_file(self.target + file)
+                    print("running file from dir")
+                    self.analyse_file(self.target + '\\' + file)
 
         elif os.path.isfile(self.target):
             if self.target.endswith('.js'):
                 self.analyse_file(self.target)
+            else:
+                print("target no js file")
+                return False
+        else:
+            print(self.target)
+            print('else triggered')
+            return False
+        return True
 
     def analyse_file(self, file):
         """Analyses a single JS file, called by the run_regex command on initializaiton, should not be called directly
         """
+        print("running analysis")
+        print("File: " + file)
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
@@ -126,16 +136,24 @@ class JSParser():
                             f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
 
             dot_target.write("}\n")
-        self.render_png()
-        return True
+        if self.render_png():
+            return True
+        else:
+            return False
+
 
     def render_png(self):
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
         # Convert a .dot file to .png
         os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
-        render('dot', 'png', 'output\\classes.dot')
+        if os.path.isfile('output\\classes.dot'):
+            render('dot', 'png', 'output\\classes.dot')
+            return True
+        else:
+            return False
 
 
 if __name__ == '__main__':
     js_test = JSParser()
+    js_test.run_regex()
     js_test.write_dotfile()
