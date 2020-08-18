@@ -73,8 +73,14 @@ class ParserCLI(Cmd):
 
         if target is not None:
             if target == 'mdb':
-                # Do Mongo Things
-                pass
+                m_cursor = MongoCursor()
+                m_result = m_cursor.fetch_entry(name)
+                if m_result:
+                    print(f'{name} entry successfully loaded')
+                    with open("output\\classes.dot", "w+") as dot_target:
+                        dot_target.write(m_result['data'])
+                else:
+                    print(f'Entry {name} not found.')
 
             if target == 'sdb':
                 # Do SQL things

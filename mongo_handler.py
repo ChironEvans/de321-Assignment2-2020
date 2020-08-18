@@ -52,8 +52,7 @@ class MongoCursor:
         except pymongo.errors.ServerSelectionTimeoutError:
             print("Server connection error timed out")
             return False
-        else:
-            return True
+        return True
 
 
 if __name__ == '__main__':
