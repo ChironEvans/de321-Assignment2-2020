@@ -1,4 +1,5 @@
 # Code by Chiron
+import os
 import sys
 from cmd import Cmd
 from jsparser import JSParser
@@ -10,14 +11,18 @@ class ParserCLI(Cmd):
     def __init__(self):
         Cmd.__init__(self)
         self.prompt = ">>> "
-        self.js_parser = JSParser()
+        self.js_parser = None
+        self.m_cursor = None
+
+    def do_help(self, *args):
+        with open('help.txt', 'r') as help_file:
+            for line in help_file.readlines():
+                print(line)
 
     def do_analyse(self, target='input\\'):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
-        print("t:" + target)
-        if target != '':
-            self.js_parser = JSParser(target)
 
+        self.js_parser = JSParser(target)
         result = self.js_parser.run_regex()
         if result:
             result = self.js_parser.write_dotfile()
@@ -31,6 +36,7 @@ class ParserCLI(Cmd):
 
     def do_renderpng(self, *args):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
+
         if self.js_parser.render_png():
             im = Image.open(r'output\\classes.dot.png')
             im.show()
@@ -38,7 +44,8 @@ class ParserCLI(Cmd):
             print('DOT file not present')
 
     def do_save(self, target=None, name='default'):
-        """Saves loaded analysis, takes 2 arguments of the name and place to save the file. p for pickle, mdb for MongoDB,
+        """Saves loaded analysis, takes 2 arguments of the name and place to save the file. p for pickle,
+        mdb for MongoDB,
         sdb for MySQL DB.
         Name argument optional.
         Example: save mdb filename"""
@@ -48,14 +55,14 @@ class ParserCLI(Cmd):
                 if os.path.isfile('output\\classes.dot'):
                     save_string = ''
                     with open("output\\classes.dot", "r") as read_target:
-                        save_string = read_target;
-                    print(save_string)
+                        save_string = read_target
 
-                    m_cursor = MongoCursor()
-                    if not m_cursor.connection():
+                    if self.m_cursor is None:
+                        self.m_cursor = MongoCursor()
+                    if not self.m_cursor.connection():
                         print("Server connection error timed out")
                     else:
-                        m_cursor.add_entry(name, save_string)
+                        self.m_cursor.add_entry(name, save_string)
                 else:
                     print("file to be saved does not exist, please analyse a file first")
 
@@ -77,11 +84,12 @@ class ParserCLI(Cmd):
 
         if target is not None:
             if target == 'mdb':
-                m_cursor = MongoCursor()
-                if not m_cursor.connection():
+                if self.m_cursor is None:
+                    m_cursor = MongoCursor()
+                if not self.m_cursor.connection():
                     print("Server connection error timed out")
                 else:
-                    m_result = m_cursor.fetch_entry(name)
+                    m_result = self.m_cursor.fetch_entry(name)
                     if m_result:
                         print(f'{name} entry successfully loaded')
                         with open("output\\classes.dot", "w+") as dot_target:
@@ -98,3 +106,7 @@ class ParserCLI(Cmd):
                 pass
         else:
             print("Error: No argument given")
+
+if __name__ == '__main__':
+    cli = ParserCLI()
+    cli.cmdloop()
