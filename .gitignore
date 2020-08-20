@@ -2,3 +2,8 @@
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
+output/classes.dot
+output/classes.dot.png
+__pycache__/jsparser.cpython-38.pyc
+__pycache__/mongo_handler.cpython-38.pyc
+__pycache__/pickler.cpython-38.pyc
