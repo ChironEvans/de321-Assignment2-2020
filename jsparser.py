@@ -3,7 +3,7 @@ import re
 import subprocess
 from re import findall, sub, split
 from os import path, listdir
-
+from pickler import Pickler
 from graphviz import render
 
 
@@ -151,6 +151,24 @@ class JSParser:
             return True
         else:
             return False
+
+    def check_self(self):
+        if len(self.js_classnames) > 0:
+            return True
+        return False
+
+    def pickle_self(self, name='last_pickle'):
+        pickler = Pickler(name)
+        pickler.preserve(self.__dict__)
+        return True
+
+    def load_pickle(self, name='last_pickle'):
+        pickler = Pickler(name)
+        if self.__dict__.update(pickler.load()) is not False:
+            if self.check_self():
+                return True
+
+        return False
 
 
 if __name__ == '__main__':

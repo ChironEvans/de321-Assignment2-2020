@@ -13,9 +13,14 @@ class MongoCursor:
         """Adds an entry to a MongoDB Database, Takes an arbitrary entry name & a payload.
         Payload must be a dictionary of information gathered from an analysed JS file"""
         if self.connection():
-            query = self.db.jparser.analysed.update_one({'name': name}, {'data': payload}, upsert=True)
+            query = self.db.jparser.analysed.update_one({'name': name}, {'$set': {'data': payload}}, upsert=True)
 
-            if query.modified_count > 0:
+            # Uncomment for debug
+            # print(f'Modified: {query.modified_count}')
+            # print(query, type(query))
+            # print(query.raw_result)
+
+            if query.raw_result['ok'] == 1.0:
                 return True
             else:
                 return False
