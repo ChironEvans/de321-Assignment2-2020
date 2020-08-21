@@ -1,39 +1,53 @@
 import os
 import re
-import subprocess
-from re import findall, sub, split
-from os import path, listdir
-from pickler import Pickler
+from js_parser.pickler import Pickler
 from graphviz import render
 
 
 class JSParser:
 
-    def __init__(self, target='input\\'):
-        self.target = target
+    def __init__(self):
+        self.target = f'{os.getcwd()}\\input\\'
         self.js_classnames = []
         self.js_attributes = {}
         self.js_assocs = {}
         self.js_methods = {}
+        self.file_depth = 0
+        self.max_depth = 4
 
-    def run_regex(self):
-        """Begins the process of analysing a file or directory of JS files. No arguments taken"""
-        print("self.target: " + self.target)
-        if os.path.isdir(self.target):
-            for file in os.listdir(self.target):
+    def set_target(self, target):
+        """Sets the directory or file as the target of analysis, one argument required, the path to target file or
+        dir. Returns True if successful, False if an invalid target it given"""
+        if target is not None and target != '':
+            self.target = target
+            return True
+        return False
+
+    def run_regex(self, reg_target=None):
+        """Begins the process of analysing a file or directory of JS files. No arguments taken. Files must be inside
+        parent directory, not nested within folders"""
+        if reg_target is None:
+            reg_target = self.target
+        # TODO Make a function to recursively search for new folders and check for files within, needs a max depth
+        if os.path.isdir(reg_target):
+            self.file_depth += 1
+            for file in os.listdir(reg_target):
                 if file.endswith('.js'):
                     print("running file from dir")
-                    self.analyse_file(self.target + '\\' + file)
+                    self.analyse_file(reg_target + '\\' + file)
+                elif file.isdir():
+                    print('analysing dir in dir')
+                    print(self.file_depth)
+                    self.run_regex(file)
 
-        elif os.path.isfile(self.target):
-            if self.target.endswith('.js'):
-                self.analyse_file(self.target)
+        elif os.path.isfile(reg_target):
+            if reg_target.endswith('.js'):
+                self.analyse_file(reg_target)
             else:
                 print("target no js file")
                 return False
         else:
-            print(self.target)
-            print('else triggered')
+            print('target not dir or file')
             return False
         return True
 
@@ -104,7 +118,8 @@ class JSParser:
 
     def write_dotfile(self):
         """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
-        with open("output\\classes.dot", "w+") as dot_target:
+        print()
+        with open(f"{os.getcwd()}\\output\\classes.dot", "w+") as dot_target:
             dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
             class_num = 0
             class_index = {}
@@ -146,8 +161,8 @@ class JSParser:
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
         # Convert a .dot file to .png
         os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
-        if os.path.isfile('output\\classes.dot'):
-            render('dot', 'png', 'output\\classes.dot')
+        if os.path.isfile(f'{os.getcwd()}\\output\\classes.dot'):
+            render('dot', 'png', f'{os.getcwd()}\\output\\classes.dot')
             return True
         else:
             return False

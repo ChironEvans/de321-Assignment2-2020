@@ -1,39 +1,40 @@
 # Code by Chiron
 import os
-import sys
 from cmd import Cmd
-from jsparser import JSParser
+from js_parser.jsparser import JSParser
 from PIL import Image
-from mongo_handler import MongoCursor
+from js_parser.mongo_handler import MongoCursor
 
 
 class ParserCLI(Cmd):
-    def __init__(self):
-        Cmd.__init__(self)
+    def __init__(self, new_parser=None):
+        Cmd.__init__(self, new_parser)
         self.prompt = ">>> "
-        self.js_parser = None
+        self.js_parser = new_parser
         self.m_cursor = None
 
     def do_help(self, *args):
-        with open('help.txt', 'r') as help_file:
+        with open('js_parser/help.txt', 'r') as help_file:
             for line in help_file.readlines():
                 print(line)
 
-    def do_analyse(self, target='input\\'):
+    def do_analyse(self, target=''):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
-        if target == '':
-            target = 'input\\'
-        self.js_parser = JSParser(target)
+        if target != '':
+            self.js_parser.set_target(target)
         result = self.js_parser.run_regex()
         if result:
             result = self.js_parser.write_dotfile()
+            print(result)
             if result:
                 print('Analysis complete')
                 print('Rendering PNG')
                 self.do_renderpng()
+            else:
+                print('Unable to write to dot file')
 
         if not result:
-            print('Invalid file provided')
+            print('Invalid file/dir provided')
 
     def do_renderpng(self, *args):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
