@@ -1,41 +1,48 @@
 # Code by Chiron
 import os
-import sys
 from cmd import Cmd
-from jsparser import JSParser
+from js_parser.jsparser import JSParser
 from PIL import Image
-from mongo_handler import MongoCursor
+from mongo_cursor import MongoCursor
 
 
 class ParserCLI(Cmd):
-    def __init__(self):
-        Cmd.__init__(self)
+    def __init__(self, new_parser, new_mongo):
+        Cmd.__init__(self, new_parser)
         self.prompt = ">>> "
-        self.js_parser = None
-        self.m_cursor = None
+        self.js_parser = new_parser
+        self.m_cursor = new_mongo
 
     def do_help(self, *args):
         with open('help.txt', 'r') as help_file:
             for line in help_file.readlines():
                 print(line)
 
-    def do_analyse(self, target='input\\'):
+    def do_analyse(self, target=''):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
-        if target == '':
-            target = 'input\\'
-        self.js_parser = JSParser(target)
+        if target != '':
+            self.js_parser.set_target(target)
         result = self.js_parser.run_regex()
         if result:
             result = self.js_parser.write_dotfile()
+            print(result)
             if result:
                 print('Analysis complete')
                 print('Rendering PNG')
                 self.do_renderpng()
+            else:
+                print('Unable to write to dot file')
 
         if not result:
-            print('Invalid file provided')
+            print('Invalid file/dir provided')
 
-    def do_renderpng(self, *args):
+    def do_analyse_loaded(self, args):
+        if self.js_parser.write_dotfile():
+            print('Successfully analysed loaded data')
+        else:
+            print('No data loaded')
+
+    def do_renderpng(self, args):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
         if self.js_parser is None:
             self.js_parser = JSParser()
@@ -84,16 +91,13 @@ class ParserCLI(Cmd):
 
             if target == 'p':
                 conditions_valid = False
-                if self.js_parser is not None:
-                    if self.js_parser.check_self():
-                        if self.js_parser.pickle_self():
-                            print(f'saved successfully to {name}.p file')
-                        else:
-                            # Doesn't use conditions_false var as the conditions were met but there was an issue with
-                            # the pickler itself
-                            print('Pickling process failed')
+                if self.js_parser.check_self():
+                    if self.js_parser.pickle_self():
+                        print(f'saved successfully to {name}.p file')
                     else:
-                        conditions_valid = False
+                        # Doesn't use conditions_false var as the conditions were met but there was an issue with
+                        # the pickler itself
+                        print('Pickling process failed')
                 else:
                     conditions_valid = False
 
@@ -117,8 +121,6 @@ class ParserCLI(Cmd):
 
         if target is not None:
             if target == 'mdb':
-                if self.m_cursor is None:
-                    self.m_cursor = MongoCursor()
                 if not self.m_cursor.connection():
                     print("Server connection error timed out")
                 else:

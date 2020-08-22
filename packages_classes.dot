@@ -1,0 +1,18 @@
+digraph "packages_classes" {
+charset="utf-8"
+rankdir=BT
+"0" [label="__init__", shape="box"];
+"1" [label="js_parser", shape="box"];
+"2" [label="js_parser.jsparser", shape="box"];
+"3" [label="js_parser.mongo_handler", shape="box"];
+"4" [label="js_parser.pickler", shape="box"];
+"5" [label="parser_cli", shape="box"];
+"6" [label="test_nosejs", shape="box"];
+"7" [label="test_pyreverse", shape="box"];
+"0" -> "2" [arrowhead="open", arrowtail="none"];
+"0" -> "3" [arrowhead="open", arrowtail="none"];
+"0" -> "5" [arrowhead="open", arrowtail="none"];
+"2" -> "4" [arrowhead="open", arrowtail="none"];
+"5" -> "2" [arrowhead="open", arrowtail="none"];
+"5" -> "3" [arrowhead="open", arrowtail="none"];
+}
