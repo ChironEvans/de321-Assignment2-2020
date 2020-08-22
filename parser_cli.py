@@ -3,18 +3,18 @@ import os
 from cmd import Cmd
 from js_parser.jsparser import JSParser
 from PIL import Image
-from js_parser.mongo_handler import MongoCursor
+from mongo_cursor import MongoCursor
 
 
 class ParserCLI(Cmd):
-    def __init__(self, new_parser=None):
+    def __init__(self, new_parser, new_mongo):
         Cmd.__init__(self, new_parser)
         self.prompt = ">>> "
         self.js_parser = new_parser
-        self.m_cursor = None
+        self.m_cursor = new_mongo
 
     def do_help(self, *args):
-        with open('js_parser/help.txt', 'r') as help_file:
+        with open('help.txt', 'r') as help_file:
             for line in help_file.readlines():
                 print(line)
 
@@ -36,7 +36,13 @@ class ParserCLI(Cmd):
         if not result:
             print('Invalid file/dir provided')
 
-    def do_renderpng(self, *args):
+    def do_analyse_loaded(self, args):
+        if self.js_parser.write_dotfile():
+            print('Successfully analysed loaded data')
+        else:
+            print('No data loaded')
+
+    def do_renderpng(self, args):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
         if self.js_parser is None:
             self.js_parser = JSParser()
@@ -85,16 +91,13 @@ class ParserCLI(Cmd):
 
             if target == 'p':
                 conditions_valid = False
-                if self.js_parser is not None:
-                    if self.js_parser.check_self():
-                        if self.js_parser.pickle_self():
-                            print(f'saved successfully to {name}.p file')
-                        else:
-                            # Doesn't use conditions_false var as the conditions were met but there was an issue with
-                            # the pickler itself
-                            print('Pickling process failed')
+                if self.js_parser.check_self():
+                    if self.js_parser.pickle_self():
+                        print(f'saved successfully to {name}.p file')
                     else:
-                        conditions_valid = False
+                        # Doesn't use conditions_false var as the conditions were met but there was an issue with
+                        # the pickler itself
+                        print('Pickling process failed')
                 else:
                     conditions_valid = False
 
@@ -118,8 +121,6 @@ class ParserCLI(Cmd):
 
         if target is not None:
             if target == 'mdb':
-                if self.m_cursor is None:
-                    self.m_cursor = MongoCursor()
                 if not self.m_cursor.connection():
                     print("Server connection error timed out")
                 else:

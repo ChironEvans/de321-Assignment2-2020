@@ -1,7 +1,7 @@
 digraph "classes_test" {
 charset="utf-8"
 rankdir=BT
-"0" [label="{Trip|time\ldistance\lid\lduration\l|constructor (tripID, tripTime, tripDistance, tripDuration)\l}", shape="record"];
-"1" [label="{TripList|mergeSort\lgetAvgSpeed\leditType\lsortType\lmerge\lcomparitors\leditCache\ltripFetch\leditingTrip\lallMyTrips\l|removeTrip (trip)\lsortTrips (type)\lgetAllAvgSpeed (arr)\lconfirmEdit ()\laddTrip (newTripTime, newTripDistance, newTripDuration)\lgetTripData (arr, type)\lcancelEdit ()\lload ()\lgetAvgSpeed (trip)\leditTrip (trip, type, value)\lmerge (left, right)\lconstructor ()\lgetAllTrips ()\lsave ()\lmergeSort (arr)\lfilterTrips (type, operator, value)\l}", shape="record"];
-"1" -> "0" [arrowhead="empty", arrowtail="none"];
+"0" [label="{TripList|mergeSort\lallMyTrips\leditingTrip\leditType\lcomparitors\lmerge\ltripFetch\leditCache\lgetAvgSpeed\lsortType\l|getTripData (arr, type)\lgetAllTrips ()\leditTrip (trip, type, value)\lload ()\lmerge (left, right)\lmergeSort (arr)\lconfirmEdit ()\lsave ()\lcancelEdit ()\lremoveTrip (trip)\lsortTrips (type)\lgetAvgSpeed (trip)\laddTrip (newTripTime, newTripDistance, newTripDuration)\lconstructor ()\lgetAllAvgSpeed (arr)\lfilterTrips (type, operator, value)\l}", shape="record"];
+"1" [label="{Trip|time\lduration\lid\ldistance\l|constructor (tripID, tripTime, tripDistance, tripDuration)\l}", shape="record"];
+"0" -> "1" [arrowhead="empty", arrowtail="none"];
 }

@@ -28,18 +28,14 @@ class JSParser:
         parent directory, not nested within folders"""
         if reg_target is None:
             reg_target = self.target
-        # TODO Make a function to recursively search for new folders and check for files within, needs a max depth
+
         if os.path.isdir(reg_target):
             self.file_depth += 1
-            for file in os.listdir(reg_target):
-                if file.endswith('.js'):
-                    print("running file from dir")
-                    self.analyse_file(reg_target + '\\' + file)
-                elif file.isdir():
-                    print('analysing dir in dir')
-                    print(self.file_depth)
-                    self.run_regex(file)
-
+            for root, dirs, files in os.walk(reg_target):
+                for name in files:
+                    if name.endswith('.js'):
+                        print('running file from dir')
+                        self.analyse_file(os.path.join(root, name))
         elif os.path.isfile(reg_target):
             if reg_target.endswith('.js'):
                 self.analyse_file(reg_target)
@@ -52,7 +48,7 @@ class JSParser:
         return True
 
     def analyse_file(self, file):
-        """Analyses a single JS file, called by the run_regex command on initializaiton, should not be called directly
+        """Analyses a single JS file, called by the run_regex command , should not be called directly
         """
         print("running analysis")
         print("File: " + file)
@@ -82,80 +78,83 @@ class JSParser:
 
             i = 0
             while i < len(js_file_split):
-                if js_file_split[i][0] + js_file_split[i][1] + js_file_split[i][2] + js_file_split[i][3] + \
-                        js_file_split[i][4] == "class":
-                    classname = re.search("class\s\w{3,}", js_file_split[i])
-                    s = classname.start()
-                    e = classname.end()
-                    classname = classname.string[s:e]
-                    classname = classname.split(" ")[1]
+                if len(js_file_split[i]) > 5:
+                    if js_file_split[i][0] + js_file_split[i][1] + js_file_split[i][2] + js_file_split[i][3] + \
+                            js_file_split[i][4] == "class":
 
-                    js_attributes_raw = re.findall("this.\w{1,}", js_file_split[i])
-                    js_attributes_cleaned = set([])
-                    for attr in js_attributes_raw:
-                        js_attributes_cleaned.add(attr.replace('this.', ''))
-                    self.js_attributes[classname] = js_attributes_cleaned
+                        classname = re.search("class\s\w{3,}", js_file_split[i])
+                        s = classname.start()
+                        e = classname.end()
+                        classname = classname.string[s:e]
+                        classname = classname.split(" ")[1]
 
-                    js_methods_raw = re.findall("\n\s{2}\w{2,}\s\(.*\)", js_file_split[i])
+                        js_attributes_raw = re.findall("this.\w{1,}", js_file_split[i])
+                        js_attributes_cleaned = set([])
+                        for attr in js_attributes_raw:
+                            js_attributes_cleaned.add(attr.replace('this.', ''))
+                        self.js_attributes[classname] = js_attributes_cleaned
 
-                    js_methods_cleaned = set([])
-                    for method in js_methods_raw:
-                        js_methods_cleaned.add(method.strip("\n  "))
-                    self.js_methods[classname] = js_methods_cleaned
+                        js_methods_raw = re.findall("\n\s{2}\w{2,}\s\(.*\)", js_file_split[i])
+                        js_methods_cleaned = set([])
+                        for method in js_methods_raw:
+                            js_methods_cleaned.add(method.strip("\n  "))
+                        self.js_methods[classname] = js_methods_cleaned
 
-                    associations_raw = re.findall("new\s\w{3,}\(", js_file_split[i])
-                    associations_cleaned = set([])
-                    for assoc in associations_raw:
-                        associations_cleaned.add(assoc.replace("new ", '').replace("(", ''))
-                    self.js_assocs[classname] = associations_cleaned
-                else:
-                    bad_sectors.append(i)
+                        associations_raw = re.findall("new\s\w{3,}\(", js_file_split[i])
+                        associations_cleaned = set([])
+                        for assoc in associations_raw:
+                            associations_cleaned.add(assoc.replace("new ", '').replace("(", ''))
+                        self.js_assocs[classname] = associations_cleaned
+
+                    else:
+                        # Add sections of code that are not classes to list to be removed
+                        bad_sectors.append(i)
                 i += 1
+
             for bad_sector in bad_sectors:
                 js_file_split.remove(js_file_split[bad_sector])
-
         return True
 
     def write_dotfile(self):
         """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
-        print()
-        with open(f"{os.getcwd()}\\output\\classes.dot", "w+") as dot_target:
-            dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
-            class_num = 0
-            class_index = {}
-            for js_class in self.js_classnames:
-                class_name = self.js_classnames[class_num]
-                class_attrs = self.js_attributes[class_name]
-                class_methods = self.js_methods[class_name]
-                class_index[class_name] = class_num
-                output_string = f'"{class_num}" [label="' + '{' + f'{class_name}|'
+        if self.check_self():
+            with open(f"{os.getcwd()}\\output\\classes.dot", "w+") as dot_target:
+                dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
+                class_num = 0
+                class_index = {}
+                for js_class in self.js_classnames:
+                    class_name = self.js_classnames[class_num]
+                    class_attrs = self.js_attributes[class_name]
+                    class_methods = self.js_methods[class_name]
+                    class_index[class_name] = class_num
+                    output_string = f'"{class_num}" [label="' + '{' + f'{class_name}|'
 
-                for attr in class_attrs:
-                    output_string += f'{attr}\\l'
+                    for attr in class_attrs:
+                        output_string += f'{attr}\\l'
 
-                output_string += '|'
+                    output_string += '|'
 
-                for method in class_methods:
-                    output_string += f'{method}\\l'
+                    for method in class_methods:
+                        output_string += f'{method}\\l'
 
-                output_string += '}", shape="record"];\n'
-                dot_target.write(output_string)
-                class_num += 1
+                    output_string += '}", shape="record"];\n'
+                    dot_target.write(output_string)
+                    class_num += 1
 
-            for primary in class_index:
-                class_assocs = self.js_assocs[primary]
-                for assoc in class_assocs:
-                    if assoc in class_index:
-                        assoc_index = class_index[assoc]
-                        dot_target.write(
-                            f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
+                for primary in class_index:
+                    class_assocs = self.js_assocs[primary]
+                    for assoc in class_assocs:
+                        if assoc in class_index:
+                            assoc_index = class_index[assoc]
+                            dot_target.write(
+                                f'"{class_index[primary]}" -> "{assoc_index}" [arrowhead="empty", arrowtail="none"];\n')
 
-            dot_target.write("}\n")
-        if self.render_png():
-            return True
-        else:
-            return False
-
+                dot_target.write("}\n")
+            if self.render_png():
+                return True
+            else:
+                return False
+        return False
 
     def render_png(self):
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
@@ -182,7 +181,6 @@ class JSParser:
         if self.__dict__.update(pickler.load()) is not False:
             if self.check_self():
                 return True
-
         return False
 
 

@@ -7,3 +7,6 @@ output/classes.dot.png
 __pycache__/jsparser.cpython-38.pyc
 __pycache__/mongo_handler.cpython-38.pyc
 __pycache__/pickler.cpython-38.pyc
+classes_classes.dot
+classes_classes.dot.png
+*.pyc

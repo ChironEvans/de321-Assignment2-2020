@@ -2,14 +2,7 @@
 /* eslint-disable eqeqeq, no-unused-vars, prefer-const, no-useless-return */
 const STORAGE_KEY = 'tripListCME'
 
-class Trip {
-  constructor (tripID, tripTime, tripDistance, tripDuration) {
-    this.id = tripID
-    this.time = tripTime
-    this.distance = tripDistance
-    this.duration = tripDuration
-  }
-}
+
 // FEATURE 1: Create a whole that acts as a facade for parts
 class TripList {
   constructor () {

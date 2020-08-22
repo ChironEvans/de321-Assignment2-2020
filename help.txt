@@ -5,9 +5,10 @@ help [arg]   shows this file
 Additional arguments: 
     -[command]    shows help info related to a specific command
 
-analyse [file/dir]  loads analysis objects from local file/directory (e.g. analyse -f D:\DIR)
+analyse [file/dir]  	generates UML from local file/directory (e.g. analyse -f D:\DIR)
+analyse_loaded		generates UML from loaded pickle data
 
-load [arg] [file]   loads analysis object(s) into the program from saved location
+load [arg] [name]   loads analysis object(s) into the program from saved location
 Additional arguments:
     -p [name]     loads analysis objects from a previously saved pickle file
     -mdb [name]   loads analysis objects from a previously saved mongoDB entry
@@ -19,4 +20,5 @@ Requires an argument:
     -sdb    saves to SQL DB
     -p      saves to a pickle file
 
-analyze     outputs a UML class diagram of the imported code
+renderpng 	outputs a UML class diagram of loaded MongoDB code
+
