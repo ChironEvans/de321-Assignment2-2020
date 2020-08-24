@@ -1,4 +1,5 @@
 # Code by Chiron
+import os
 from cmd import Cmd
 from PIL import Image
 from js_parser.jsparser import JSParser
@@ -35,13 +36,13 @@ class ParserCLI(Cmd):
         if not result:
             print('Invalid file/dir provided')
 
-    def do_analyse_loaded(self, args):
+    def do_analyse_loaded(self, *args):
         if self.js_parser.write_dotfile():
             print('Successfully analysed loaded data')
         else:
             print('No data loaded')
 
-    def do_renderpng(self, args):
+    def do_renderpng(self, *args):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
         if self.js_parser is None:
             self.js_parser = JSParser()
@@ -70,17 +71,16 @@ class ParserCLI(Cmd):
         if target is not None:
             if target == 'mdb':
                 if os.path.isfile('output\\classes.dot'):
-                    save_string = ''
                     with open("output\\classes.dot", "r") as read_target:
                         save_string = read_target.readlines()
-
-                    if self.m_cursor is None:
-                        self.m_cursor = MongoCursor()
-                    if not self.m_cursor.connection():
-                        print("Server connection error timed out")
-                    else:
-                        if self.m_cursor.add_entry(name, save_string):
-                            print(f'Saved to MongoDB as {name}')
+                    if save_string is not None:
+                        if self.m_cursor is None:
+                            self.m_cursor = MongoCursor()
+                        if not self.m_cursor.connection():
+                            print("Server connection error timed out")
+                        else:
+                            if self.m_cursor.add_entry(name, save_string):
+                                print(f'Saved to MongoDB as {name}')
                 else:
                     print("file to be saved does not exist, please analyse a file first")
 
@@ -107,7 +107,8 @@ class ParserCLI(Cmd):
             print("Error: Incorrect or no argument given")
 
     def do_load(self, args):
-        """Saves loaded analysis, takes 2 arguments of the name and place to load the file from. p for pickle, mdb for MongoDB,
+        """Saves loaded analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
+                mdb for MongoDB,
                 sdb for MySQL DB"
                 Name argument optional.
                 Example: load mdb filename"""
@@ -143,8 +144,3 @@ class ParserCLI(Cmd):
                 pass
         else:
             print("Error: No argument given")
-
-
-if __name__ == '__main__':
-    cli = ParserCLI()
-    cli.cmdloop()

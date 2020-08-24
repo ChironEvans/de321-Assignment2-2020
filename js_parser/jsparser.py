@@ -1,4 +1,4 @@
-#Code by Chiron Evans
+# Code by Chiron Evans
 import os
 import re
 from js_parser.pickler import Pickler
@@ -59,7 +59,7 @@ class JSParser:
                 js_input += line
 
             # Remove all comment blocks
-            js_input = re.sub("\/\*(.|\n)*\*\/", '', js_input)
+            js_input = re.sub("/\*(.|\n)*\*/", '', js_input)
             js_input = re.sub("#.*", '', js_input)
             js_classname_raw = re.findall("class\s\w{3,}", js_input)
 
@@ -89,7 +89,7 @@ class JSParser:
                         classname = classname.string[s:e]
                         classname = classname.split(" ")[1]
 
-                        js_attributes_raw = re.findall("this.\w{1,}", js_file_split[i])
+                        js_attributes_raw = re.findall("this.\w+", js_file_split[i])
                         js_attributes_cleaned = set([])
                         for attr in js_attributes_raw:
                             js_attributes_cleaned.add(attr.replace('this.', ''))
@@ -123,7 +123,7 @@ class JSParser:
                 dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
                 class_num = 0
                 class_index = {}
-                for js_class in self.js_classnames:
+                while class_num < len(self.js_classnames):
                     class_name = self.js_classnames[class_num]
                     class_attrs = self.js_attributes[class_name]
                     class_methods = self.js_methods[class_name]
@@ -157,7 +157,8 @@ class JSParser:
                 return False
         return False
 
-    def render_png(self):
+    @staticmethod
+    def render_png():
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
         # Convert a .dot file to .png
         os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
