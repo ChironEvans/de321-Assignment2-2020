@@ -49,7 +49,7 @@ class MongoCursor:
         else:
             return False
 
-    # Code by Liam
+    # connection function code by Liam
     def connection(self):
         """Checks whether there's a valid connection to MongoDB database should not be called directly"""
         try:
@@ -57,4 +57,3 @@ class MongoCursor:
         except pymongo.errors.ServerSelectionTimeoutError:
             return False
         return True
-
