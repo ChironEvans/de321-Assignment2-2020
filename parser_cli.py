@@ -1,8 +1,7 @@
 # Code by Chiron
-import os
+from os import path, 
 from cmd import Cmd
 from js_parser.jsparser import JSParser
-from PIL import Image
 from mongo_cursor import MongoCursor
 
 
