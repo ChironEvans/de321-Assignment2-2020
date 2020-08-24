@@ -1,5 +1,5 @@
 # Code by Chiron
-from os import path, 
+from os import path
 from cmd import Cmd
 from js_parser.jsparser import JSParser
 from mongo_cursor import MongoCursor
