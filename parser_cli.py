@@ -86,12 +86,12 @@ class ParserCLI(Cmd):
                 else:
                     print("file to be saved does not exist, please analyse a file first")
 
-            if target == 'sdb':
+            elif target == 'sdb':
                 # SQL Code by Liam
                 print('Not yet Implemented')
                 pass
 
-            if target == 'p':
+            elif target == 'p':
                 conditions_valid = False
                 if self.js_parser.check_self():
                     if self.js_parser.pickle_self(name):
@@ -106,6 +106,8 @@ class ParserCLI(Cmd):
 
                 if not conditions_valid:
                     print('No data available to save')
+            else:
+                print("Error: Incorrect argument given")
         else:
             print("Error: Incorrect or no argument given")
 
@@ -137,15 +139,17 @@ class ParserCLI(Cmd):
                     else:
                         print(f'Entry {name} not found.')
 
-            if target == 'sdb':
+            elif target == 'sdb':
                 # SQL Code by Liam
                 # Do SQL things
                 print('Not yet Implemented')
                 pass
-            if target == 'p':
+            elif target == 'p':
                 if self.js_parser.load_pickle(name):
                     print(f'Data successfully loaded from {name}.p')
                 else:
                     print(f'Data could not be loaded from {name}.p')
+            else:
+                print("Error: Incorrect argument given")
         else:
             print("Error: No argument given")
