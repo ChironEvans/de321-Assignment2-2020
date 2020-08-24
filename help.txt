@@ -1,7 +1,8 @@
 ### HELP ###
 This file will contain all help information for commands and options.
 
-help [arg]   shows this file
+help [arg]   shows help for each individual command, or the build in help overview
+showhelp     shows this file
 Additional arguments: 
     -[command]    shows help info related to a specific command
 
