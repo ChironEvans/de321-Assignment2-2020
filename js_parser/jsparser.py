@@ -35,24 +35,20 @@ class JSParser:
             for root, dirs, files in os.walk(reg_target):
                 for name in files:
                     if name.endswith('.js'):
-                        print('running file from dir')
                         self.analyse_file(os.path.join(root, name))
         elif os.path.isfile(reg_target):
             if reg_target.endswith('.js'):
                 self.analyse_file(reg_target)
             else:
-                print("target no js file")
                 return False
         else:
-            print('target not dir or file')
             return False
         return True
 
     def analyse_file(self, file):
         """Analyses a single JS file, called by the run_regex command , should not be called directly
         """
-        print("running analysis")
-        print("File: " + file)
+
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
@@ -119,7 +115,7 @@ class JSParser:
     def write_dotfile(self):
         """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
         if self.check_self():
-            with open(f"{os.getcwd()}\\output\\classes.dot", "w+") as dot_target:
+            with open(f"{os.getcwd()}\\output\\classes.dot", "w") as dot_target:
                 dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
                 class_num = 0
                 class_index = {}
@@ -173,12 +169,12 @@ class JSParser:
             return True
         return False
 
-    def pickle_self(self, name='last_pickle'):
+    def pickle_self(self, name='default'):
         pickler = Pickler(name)
         pickler.preserve(self.__dict__)
         return True
 
-    def load_pickle(self, name='last_pickle'):
+    def load_pickle(self, name='default'):
         pickler = Pickler(name)
         if self.__dict__.update(pickler.load()) is not False:
             if self.check_self():

@@ -24,6 +24,7 @@ class ParserCLI(Cmd):
             self.js_parser.set_target(target)
         result = self.js_parser.run_regex()
         if result:
+
             result = self.js_parser.write_dotfile()
             print(result)
             if result:
@@ -48,6 +49,7 @@ class ParserCLI(Cmd):
             self.js_parser = JSParser()
 
         if self.js_parser.render_png():
+            print('Rendering PNG')
             im = Image.open(r'output\\classes.dot.png')
             im.show()
         else:
@@ -92,8 +94,9 @@ class ParserCLI(Cmd):
             if target == 'p':
                 conditions_valid = False
                 if self.js_parser.check_self():
-                    if self.js_parser.pickle_self():
+                    if self.js_parser.pickle_self(name):
                         print(f'saved successfully to {name}.p file')
+                        conditions_valid = True
                     else:
                         # Doesn't use conditions_false var as the conditions were met but there was an issue with
                         # the pickler itself
@@ -140,7 +143,9 @@ class ParserCLI(Cmd):
                 print('Not yet Implemented')
                 pass
             if target == 'p':
-                # Pickle it
-                pass
+                if self.js_parser.load_pickle(name):
+                    print(f'Data successfully loaded from {name}.p')
+                else:
+                    print(f'Data could not be loaded from {name}.p')
         else:
             print("Error: No argument given")
