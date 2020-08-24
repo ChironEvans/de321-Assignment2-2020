@@ -1,5 +1,5 @@
 # Code by Chiron Evans
-from pymongo import MongoClient, errors
+import pymongo
 
 
 class MongoCursor:
