@@ -1,6 +1,6 @@
 # Code by Chiron Evans
-import pickle
-import os
+from pickle import dump, load
+from os import path
 
 
 class Pickler:
