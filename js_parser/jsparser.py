@@ -1,6 +1,6 @@
-from os import getcwd, path, walk, environ, pathsep
+#Code by Chiron Evans
+import os
 import re
-from re import sub, findall, search, split
 from js_parser.pickler import Pickler
 from graphviz import render
 

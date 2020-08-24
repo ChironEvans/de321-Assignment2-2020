@@ -1,6 +1,6 @@
 # Code by Chiron
-from os import path
 from cmd import Cmd
+from PIL import Image
 from js_parser.jsparser import JSParser
 from mongo_cursor import MongoCursor
 
@@ -86,6 +86,7 @@ class ParserCLI(Cmd):
 
             if target == 'sdb':
                 # SQL Code by Liam
+                print('Not yet Implemented')
                 pass
 
             if target == 'p':
@@ -135,6 +136,7 @@ class ParserCLI(Cmd):
             if target == 'sdb':
                 # SQL Code by Liam
                 # Do SQL things
+                print('Not yet Implemented')
                 pass
             if target == 'p':
                 # Pickle it
