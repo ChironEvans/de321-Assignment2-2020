@@ -13,10 +13,12 @@ class ParserCLI(Cmd):
         self.js_parser = new_parser
         self.m_cursor = new_mongo
 
-    def do_help(self, *args):
+    @staticmethod
+    def do_showhelp(*args):
+        """Show the helpfile"""
         with open('help.txt', 'r') as help_file:
             for line in help_file.readlines():
-                print(line)
+                print(line.strip('\n'))
 
     def do_analyse(self, target=''):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
@@ -29,7 +31,6 @@ class ParserCLI(Cmd):
             print(result)
             if result:
                 print('Analysis complete')
-                print('Rendering PNG')
                 self.do_renderpng()
             else:
                 print('Unable to write to dot file')
@@ -38,6 +39,8 @@ class ParserCLI(Cmd):
             print('Invalid file/dir provided')
 
     def do_analyse_loaded(self, *args):
+        """Runs analysis on loaded pickle data, only writes to DOT file, renderpng command must be run afterwards
+        to receive image output"""
         if self.js_parser.write_dotfile():
             print('Successfully analysed loaded data')
         else:
@@ -69,7 +72,7 @@ class ParserCLI(Cmd):
         if len(args) > 1:
             name = args[1]
 
-        print('running save command')
+        print('Running save command')
         if target is not None:
             if target == 'mdb':
                 if os.path.isfile('output\\classes.dot'):
@@ -138,7 +141,6 @@ class ParserCLI(Cmd):
                                 dot_target.write(line)
                     else:
                         print(f'Entry {name} not found.')
-
             elif target == 'sdb':
                 # SQL Code by Liam
                 # Do SQL things
@@ -153,3 +155,47 @@ class ParserCLI(Cmd):
                 print("Error: Incorrect argument given")
         else:
             print("Error: No argument given")
+
+    def do_remove(self, args):
+        """Saves loaded analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
+                mdb for MongoDB,
+                sdb for MySQL DB"
+                Name argument optional.
+                Example: load mdb filename"""
+        target = None
+        name = 'default'
+        args = args.split(' ')
+        if len(args) > 0:
+            target = args[0]
+        if len(args) > 1:
+            name = args[1]
+
+        if target is not None:
+            if target == 'mdb':
+                if not self.m_cursor.connection():
+                    print("Server connection error timed out")
+                else:
+                    m_result = self.m_cursor.delete_entry(name)
+                    if m_result:
+                        print(f'{name} entry successfully deleted')
+                    else:
+                        print(f'Entry {name} not found.')
+            elif target == 'sdb':
+                # SQL Code by Liam
+                # Do SQL things
+                print('Not yet Implemented')
+                pass
+            elif target == 'p':
+                if self.js_parser.load_pickle(name):
+                    print(f'Successfully deleted {name}.p')
+                else:
+                    print(f'{name}.p could not be found')
+            else:
+                print("Error: Incorrect argument given")
+        else:
+            print("Error: No argument given")
+
+    def do_exit(self, *args):
+        """Exits the program
+        return: true"""
+        return True

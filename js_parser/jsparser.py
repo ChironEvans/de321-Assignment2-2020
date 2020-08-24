@@ -181,8 +181,9 @@ class JSParser:
                 return True
         return False
 
-
-if __name__ == '__main__':
-    js_test = JSParser()
-    js_test.run_regex()
-    js_test.write_dotfile()
+    @staticmethod
+    def delete_pickle(name='default'):
+        if os.path.isfile(f'{name}.p'):
+            os.remove(f'{name}.p')
+            return True
+        return False
