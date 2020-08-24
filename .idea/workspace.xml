@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4813488-76bc-4018-957d-6140c0f14720" name="Default Changelist" comment="Created a fil">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js_parser/jsparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/jsparser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js_parser/pickler.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/pickler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo_cursor.py" beforeDir="false" afterPath="$PROJECT_DIR$/mongo_cursor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser_cli.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,17 +248,17 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="628" height="485" key="GridCell.Tab.1.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598054912434" />
-    <state x="298" y="311" key="SettingsEditor" timestamp="1598260998295">
+    <state x="298" y="311" key="SettingsEditor" timestamp="1598261495439">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="224" y="231" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597635178824" />
-    <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598260998295" />
-    <state x="343" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1598260920492">
+    <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598261495439" />
+    <state x="343" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1598261451410">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="171" y="254" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1597633610642" />
     <state x="257" y="389" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597615177276" />
-    <state x="343" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598260920492" />
+    <state x="343" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598261451410" />
     <state x="1615" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597198174353" />
     <state x="1090" y="618" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598261314065">
       <screen x="0" y="0" width="2560" height="1400" />
