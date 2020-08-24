@@ -11,3 +11,4 @@ classes_classes.dot
 classes_classes.dot.png
 *.pyc
 *.pyc
+.idea/workspace.xml
