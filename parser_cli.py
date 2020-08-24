@@ -7,11 +7,12 @@ from mongo_cursor import MongoCursor
 
 
 class ParserCLI(Cmd):
-    def __init__(self, new_parser, new_mongo):
+    def __init__(self, new_parser, new_mongo, new_view):
         Cmd.__init__(self, new_parser)
         self.prompt = ">>> "
         self.js_parser = new_parser
         self.m_cursor = new_mongo
+        self.view = new_view
 
     def do_help(self, *args):
         with open('help.txt', 'r') as help_file:
