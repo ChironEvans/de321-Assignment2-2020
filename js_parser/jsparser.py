@@ -1,6 +1,7 @@
 # Code by Chiron Evans
 import os
-import re
+from os import getcwd, path, walk, environ, pathsep, remove
+from re import findall, sub, split, search
 from js_parser.pickler import Pickler
 from graphviz import render
 
@@ -8,7 +9,7 @@ from graphviz import render
 class JSParser:
 
     def __init__(self):
-        self.target = f'{os.getcwd()}\\input\\'
+        self.target = f'{getcwd()}\\input\\'
         self.js_classnames = []
         self.js_attributes = {}
         self.js_assocs = {}
@@ -30,13 +31,13 @@ class JSParser:
         if reg_target is None:
             reg_target = self.target
 
-        if os.path.isdir(reg_target):
+        if path.isdir(reg_target):
             self.file_depth += 1
-            for root, dirs, files in os.walk(reg_target):
+            for root, dirs, files in walk(reg_target):
                 for name in files:
                     if name.endswith('.js'):
-                        self.analyse_file(os.path.join(root, name))
-        elif os.path.isfile(reg_target):
+                        self.analyse_file(path.join(root, name))
+        elif path.isfile(reg_target):
             if reg_target.endswith('.js'):
                 self.analyse_file(reg_target)
             else:
@@ -55,12 +56,12 @@ class JSParser:
                 js_input += line
 
             # Remove all comment blocks
-            js_input = re.sub("/\*(.|\n)*\*/", '', js_input)
-            js_input = re.sub("#.*", '', js_input)
-            js_classname_raw = re.findall("class\s\w{3,}", js_input)
+            js_input = sub("/\*(.|\n)*\*/", '', js_input)
+            js_input = sub("#.*", '', js_input)
+            js_classname_raw = findall("class\s\w{3,}", js_input)
 
             for match in js_classname_raw:
-                classname = re.search("class\s\w{3,}", match)
+                classname = search("class\s\w{3,}", match)
                 s = classname.start()
                 e = classname.end()
                 classname = classname.string[s:e]
@@ -69,8 +70,8 @@ class JSParser:
                     self.js_classnames.append(classname)
 
             # Add in a large random string so that regex can split by class without removing the keyword
-            js_file_for_split = re.sub("class\s", "filjjndfs789er45jkngdrijouerga890e4jndrclass ", js_input)
-            js_file_split = re.split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
+            js_file_for_split = sub("class\s", "filjjndfs789er45jkngdrijouerga890e4jndrclass ", js_input)
+            js_file_split = split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
             bad_sectors = []
 
             i = 0
@@ -79,25 +80,25 @@ class JSParser:
                     if js_file_split[i][0] + js_file_split[i][1] + js_file_split[i][2] + js_file_split[i][3] + \
                             js_file_split[i][4] == "class":
 
-                        classname = re.search("class\s\w{3,}", js_file_split[i])
+                        classname = search("class\s\w{3,}", js_file_split[i])
                         s = classname.start()
                         e = classname.end()
                         classname = classname.string[s:e]
                         classname = classname.split(" ")[1]
 
-                        js_attributes_raw = re.findall("this.\w+", js_file_split[i])
+                        js_attributes_raw = findall("this.\w+", js_file_split[i])
                         js_attributes_cleaned = set([])
                         for attr in js_attributes_raw:
                             js_attributes_cleaned.add(attr.replace('this.', ''))
                         self.js_attributes[classname] = js_attributes_cleaned
 
-                        js_methods_raw = re.findall("\n\s{2}\w{2,}\s\(.*\)", js_file_split[i])
+                        js_methods_raw = findall("\n\s{2}\w{2,}\s\(.*\)", js_file_split[i])
                         js_methods_cleaned = set([])
                         for method in js_methods_raw:
                             js_methods_cleaned.add(method.strip("\n  "))
                         self.js_methods[classname] = js_methods_cleaned
 
-                        associations_raw = re.findall("new\s\w{3,}\(", js_file_split[i])
+                        associations_raw = findall("new\s\w{3,}\(", js_file_split[i])
                         associations_cleaned = set([])
                         for assoc in associations_raw:
                             associations_cleaned.add(assoc.replace("new ", '').replace("(", ''))
@@ -115,7 +116,7 @@ class JSParser:
     def write_dotfile(self):
         """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
         if self.check_self():
-            with open(f"{os.getcwd()}\\output\\classes.dot", "w") as dot_target:
+            with open(f"{getcwd()}\\output\\classes.dot", "w") as dot_target:
                 dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
                 class_num = 0
                 class_index = {}
@@ -157,9 +158,9 @@ class JSParser:
     def render_png():
         """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
         # Convert a .dot file to .png
-        os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
-        if os.path.isfile(f'{os.getcwd()}\\output\\classes.dot'):
-            render('dot', 'png', f'{os.getcwd()}\\output\\classes.dot')
+        environ["PATH"] += pathsep + 'graphviz-2.38-win32/release/bin/'
+        if path.isfile(f'{getcwd()}\\output\\classes.dot'):
+            render('dot', 'png', f'{getcwd()}\\output\\classes.dot')
             return True
         else:
             return False
@@ -183,7 +184,7 @@ class JSParser:
 
     @staticmethod
     def delete_pickle(name='default'):
-        if os.path.isfile(f'{name}.p'):
-            os.remove(f'{name}.p')
+        if path.isfile(f'{name}.p'):
+            remove(f'{name}.p')
             return True
         return False

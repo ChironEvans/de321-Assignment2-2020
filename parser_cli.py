@@ -1,7 +1,7 @@
 # Code by Chiron
-import os
 from cmd import Cmd
 from PIL import Image
+from os import path
 from js_parser.jsparser import JSParser
 from mongo_cursor import MongoCursor
 
@@ -75,7 +75,7 @@ class ParserCLI(Cmd):
         print('Running save command')
         if target is not None:
             if target == 'mdb':
-                if os.path.isfile('output\\classes.dot'):
+                if path.isfile('output\\classes.dot'):
                     with open("output\\classes.dot", "r") as read_target:
                         save_string = read_target.readlines()
                     if save_string is not None:
@@ -195,7 +195,8 @@ class ParserCLI(Cmd):
         else:
             print("Error: No argument given")
 
-    def do_exit(self, *args):
+    @staticmethod
+    def do_exit(*args):
         """Exits the program
         return: true"""
         return True

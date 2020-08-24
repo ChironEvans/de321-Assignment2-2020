@@ -1,12 +1,12 @@
 # Code by Chiron Evans
-import pymongo
+from pymongo import MongoClient, errors
 
 
 class MongoCursor:
 
     def __init__(self):
         self.conn_str = 'mongodb://localhost:27017'
-        self.client = pymongo.MongoClient(self.conn_str, serverSelectionTimeoutMS=2000)
+        self.client = MongoClient(self.conn_str, serverSelectionTimeoutMS=2000)
         self.db = self.client.jsparser
 
     async def add_entry(self, name, payload):
@@ -54,6 +54,6 @@ class MongoCursor:
         """Checks whether there's a valid connection to MongoDB database should not be called directly"""
         try:
             self.client.server_info()
-        except pymongo.errors.ServerSelectionTimeoutError:
+        except errors.ServerSelectionTimeoutError:
             return False
         return True
