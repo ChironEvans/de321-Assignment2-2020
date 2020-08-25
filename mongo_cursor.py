@@ -50,7 +50,7 @@ class MongoCursor:
             return False
 
     # connection function code by Liam
-    async def connection(self):
+    def connection(self):
         """Checks whether there's a valid connection to MongoDB database should not be called directly"""
         try:
             self.client.server_info()
