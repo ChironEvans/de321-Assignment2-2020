@@ -7,20 +7,17 @@ from graphviz import render
 
 
 class JSParser:
-
     def __init__(self):
         self.target = f'{getcwd()}\\input\\'
         self.js_classnames = []
         self.js_attributes = {}
         self.js_assocs = {}
         self.js_methods = {}
-        self.file_depth = 0
-        self.max_depth = 4
 
     def set_target(self, target):
         """Sets the directory or file as the target of analysis, one argument required, the path to target file or
-        dir. Returns True if successful, False if an invalid target it given"""
-        if target is not None and target != '':
+        dir. Returns True if successful, False if an invalid target is given"""
+        if target is not None and target.strip(' ') != '':
             self.target = target
             return True
         return False
@@ -30,9 +27,7 @@ class JSParser:
         parent directory, not nested within folders"""
         if reg_target is None:
             reg_target = self.target
-
         if path.isdir(reg_target):
-            self.file_depth += 1
             for root, dirs, files in walk(reg_target):
                 for name in files:
                     if name.endswith('.js'):
