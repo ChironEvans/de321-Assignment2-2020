@@ -1,7 +1,7 @@
 # Code by Chiron Evans
 import os
 from os import getcwd, path, walk, environ, pathsep, remove
-from re import findall, sub, split, search
+from re import findall, sub, split, search, compile
 from js_parser.pickler import Pickler
 from graphviz import render
 
@@ -114,7 +114,7 @@ class JSParser:
         return True
 
     def write_dotfile(self):
-        """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
+        """Writes stored information from object fields to a .dot file and renders it to a .png, takes no arguments."""
         if self.check_self():
             with open(f"{getcwd()}\\output\\classes.dot", "w") as dot_target:
                 dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
@@ -156,9 +156,20 @@ class JSParser:
 
     @staticmethod
     def render_png():
-        """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
+        """Renders a PNG file from the DOT file, takes no arguments. Must have graphviz inside of the program directory or in
+        the system PATH."""
         # Convert a .dot file to .png
-        environ["PATH"] += pathsep + 'graphviz-2.38-win32/release/bin/'
+        # TODO Un-hardcode this
+        rootdir = getcwd()
+        regex = compile('graphviz.*')
+
+        for root, dirs, files in os.walk(rootdir):
+            for adir in dirs:
+                if regex.match(adir):
+                        environ["PATH"] += pathsep + path.join(adir,'release/bin/')
+
+
+
         if path.isfile(f'{getcwd()}\\output\\classes.dot'):
             render('dot', 'png', f'{getcwd()}\\output\\classes.dot')
             return True
@@ -166,16 +177,19 @@ class JSParser:
             return False
 
     def check_self(self):
+        """Checks if data is present inside the object. Takes no aarguments"""
         if len(self.js_classnames) > 0:
             return True
         return False
 
     def pickle_self(self, name='default'):
+        """Save object data to pickle file. Takes one optional argument of name"""
         pickler = Pickler(name)
         pickler.preserve(self.__dict__)
         return True
 
     def load_pickle(self, name='default'):
+        """Load object data from pickle file. Takes one optional argument of name"""
         pickler = Pickler(name)
         if self.__dict__.update(pickler.load()) is not False:
             if self.check_self():
@@ -184,6 +198,7 @@ class JSParser:
 
     @staticmethod
     def delete_pickle(name='default'):
+        """Deleted a pickled file. Takes one optional argument of name."""
         if path.isfile(f'{name}.p'):
             remove(f'{name}.p')
             return True
