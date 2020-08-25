@@ -1,5 +1,4 @@
 import io
-import unittest
 import unittest.mock
 import parser_cli
 
@@ -19,6 +18,24 @@ class TestCLI(unittest.TestCase):
 
     def test_showhelp_exists(self):
         self.assertTrue("do_showhelp" in dir(self.cli))
+
+    def test_do_analyse_exists(self):
+        self.assertTrue("do_analyse" in dir(self.cli))
+
+    def test_do_analyse_loaded_exists(self):
+        self.assertTrue("do_analyse_loaded" in dir(self.cli))
+
+    def test_do_renderpng_exists(self):
+        self.assertTrue("do_renderpng" in dir(self.cli))
+
+    def test_do_save_exists(self):
+        self.assertTrue("do_save" in dir(self.cli))
+
+    def test_do_load_exists(self):
+        self.assertTrue("do_load" in dir(self.cli))
+
+    def test_do_remove_exists(self):
+        self.assertTrue("do_remove" in dir(self.cli))
 
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def assert_stdout_help(self, arg, expected_output, mock_stdout):

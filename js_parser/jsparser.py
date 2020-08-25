@@ -39,6 +39,8 @@ class JSParser:
                 return False
         else:
             return False
+        if len(self.js_classnames) == 0:
+            return False
         return True
 
     def analyse_file(self, file):
@@ -68,7 +70,9 @@ class JSParser:
             js_file_for_split = sub("class\s", "filjjndfs789er45jkngdrijouerga890e4jndrclass ", js_input)
             js_file_split = split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
             bad_sectors = []
-
+            # Exit function if no valid classes found
+            if len(self.js_classnames) == 0:
+                return False
             i = 0
             while i < len(js_file_split):
                 if len(js_file_split[i]) > 5:
@@ -179,14 +183,17 @@ class JSParser:
 
     def pickle_self(self, name='default'):
         """Save object data to pickle file. Takes one optional argument of name"""
-        pickler = Pickler(name)
-        pickler.preserve(self.__dict__)
-        return True
+        if self.check_self():
+            pickler = Pickler(name)
+            pickler.preserve(self.__dict__)
+            return True
+        return False
 
     def load_pickle(self, name='default'):
         """Load object data from pickle file. Takes one optional argument of name"""
         pickler = Pickler(name)
-        if self.__dict__.update(pickler.load()) is not False:
+        if pickler.load() is not False:
+            self.__dict__.update(pickler.load())
             if self.check_self():
                 return True
         return False

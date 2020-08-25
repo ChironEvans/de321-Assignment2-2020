@@ -86,7 +86,7 @@ class ParserCLI(Cmd):
                         if not self.m_cursor.connection():
                             print("Server connection error timed out")
                         else:
-                            if self.m_cursor.add_entry(name, save_string):
+                            if self.m_cursor.add_entry(save_string, name):
                                 print(f'Saved to MongoDB as {name}')
                 else:
                     print("file to be saved does not exist, please analyse a file first")
