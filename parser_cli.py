@@ -16,9 +16,11 @@ class ParserCLI(Cmd):
     @staticmethod
     def do_showhelp(*args):
         """Show the helpfile"""
+        return_string = ''
         with open('help.txt', 'r') as help_file:
             for line in help_file.readlines():
-                print(line.strip('\n'))
+                return_string += line
+        print(return_string)
 
     def do_analyse(self, target=''):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
@@ -115,9 +117,9 @@ class ParserCLI(Cmd):
             print("Error: Incorrect or no argument given")
 
     def do_load(self, args):
-        """Saves loaded analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
+        """Loads saved analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
                 mdb for MongoDB,
-                sdb for MySQL DB"
+                sdb for MySQL DB
                 Name argument optional.
                 Example: load mdb filename"""
         target = None
@@ -157,9 +159,9 @@ class ParserCLI(Cmd):
             print("Error: No argument given")
 
     def do_remove(self, args):
-        """Saves loaded analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
+        """Deletes saved analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
                 mdb for MongoDB,
-                sdb for MySQL DB"
+                sdb for MySQL DB
                 Name argument optional.
                 Example: load mdb filename"""
         target = None
