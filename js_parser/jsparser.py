@@ -1,7 +1,7 @@
 # Code by Chiron Evans
 import os
 from os import getcwd, path, walk, environ, pathsep, remove
-from re import findall, sub, split, search
+from re import findall, sub, split, search, compile
 from js_parser.pickler import Pickler
 from graphviz import render
 
@@ -160,7 +160,16 @@ class JSParser:
         the system PATH."""
         # Convert a .dot file to .png
         # TODO Un-hardcode this
-        environ["PATH"] += pathsep + 'graphviz-2.38-win32/release/bin/'
+        rootdir = getcwd()
+        regex = compile('graphviz.*')
+
+        for root, dirs, files in os.walk(rootdir):
+            for adir in dirs:
+                if regex.match(adir):
+                        environ["PATH"] += pathsep + path.join(adir,'release/bin/')
+
+
+
         if path.isfile(f'{getcwd()}\\output\\classes.dot'):
             render('dot', 'png', f'{getcwd()}\\output\\classes.dot')
             return True
