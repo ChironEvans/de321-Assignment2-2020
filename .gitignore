@@ -13,3 +13,6 @@ classes_classes.dot.png
 *.pyc
 .idea/workspace.xml
 .idea/workspace.xml
+*.p
+test/graphviz-2.38-win32/
+graphviz-2.38-win32/
