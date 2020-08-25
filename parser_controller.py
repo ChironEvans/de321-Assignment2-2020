@@ -1,19 +1,22 @@
 # Code by Chiron
 import os
-from cmd import Cmd
 from js_parser.jsparser import JSParser
 from PIL import Image
 from mongo_cursor import MongoCursor
 
 
-class ParserCLI(Cmd):
-    def __init__(self, new_controller):
-        Cmd.__init__(self, new_controller)
-        self.prompt = ">>> "
-        self.controller = new_controller
+class ParserController():
+    def __init__(self, new_parser, new_mongo, new_view):
+        self.js_parser = new_parser
+        self.m_cursor = new_mongo
+        self.cli = new_view
 
-    def do_help(self, *args):
-        print(self.controller.help())
+    def do_help(self):
+        return_string = ''
+        with open('help.txt', 'r') as help_file:
+            for line in help_file.readlines():
+                return_string +=(line)
+        return return_string
 
     def do_analyse(self, target=''):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
@@ -22,16 +25,13 @@ class ParserCLI(Cmd):
         result = self.js_parser.run_regex()
         if result:
             result = self.js_parser.write_dotfile()
-            print(result)
             if result:
-                print('Analysis complete')
-                print('Rendering PNG')
-                self.do_renderpng()
+                return('Analysis complete')
             else:
-                print('Unable to write to dot file')
+                return('Unable to write to dot file')
 
         if not result:
-            print('Invalid file/dir provided')
+            return('Invalid file/dir provided')
 
     def do_analyse_loaded(self, args):
         if self.js_parser.write_dotfile():
