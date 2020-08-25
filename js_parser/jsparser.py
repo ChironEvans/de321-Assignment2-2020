@@ -165,9 +165,7 @@ class JSParser:
         for root, dirs, files in os.walk(rootdir):
             for adir in dirs:
                 if regex.match(adir):
-                        environ["PATH"] += pathsep + path.join(adir,'release/bin/')
-
-
+                    environ["PATH"] += pathsep + path.join(adir, 'release/bin/')
 
         if path.isfile(f'{getcwd()}\\output\\classes.dot'):
             render('dot', 'png', f'{getcwd()}\\output\\classes.dot')

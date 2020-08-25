@@ -1,4 +1,4 @@
-# Code by Chiron
+# Code by Chiron Evans
 from cmd import Cmd
 from PIL import Image
 from os import path
