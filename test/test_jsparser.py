@@ -1,3 +1,4 @@
+# Code by Chiron Evans
 import unittest
 from js_parser import JSParser
 from os import getcwd, path, remove
