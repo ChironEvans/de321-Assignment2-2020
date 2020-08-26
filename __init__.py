@@ -4,6 +4,6 @@ from parser_cli import ParserCLI
 from parser_controller import ParserController
 js_parser = JSParser()
 m_cursor = MongoCursor()
-parser_controller = ParserController()
-parser_cli = ParserCLI(js_parser, m_cursor, parser_cli)
+parser_controller = ParserController(js_parser, m_cursor)
+parser_cli = ParserCLI(parser_controller)
 parser_cli.cmdloop()

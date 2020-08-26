@@ -1,7 +1,7 @@
 # Code by Chiron
 import os
 from cmd import Cmd
-from js_parser.jsparser import JSParser
+from parser_controller import ParserController
 from PIL import Image
 from mongo_cursor import MongoCursor
 
@@ -12,43 +12,19 @@ class ParserCLI(Cmd):
         self.prompt = ">>> "
         self.controller = new_controller
 
-    def do_help(self, *args):
+    def do_showhelp(self, *args):
         print(self.controller.help())
 
     def do_analyse(self, target=''):
         """Analyses a JS file or directory of JS files, takes 1 optional argument or a directory or file location"""
-        if target != '':
-            self.js_parser.set_target(target)
-        result = self.js_parser.run_regex()
-        if result:
-            result = self.js_parser.write_dotfile()
-            print(result)
-            if result:
-                print('Analysis complete')
-                print('Rendering PNG')
-                self.do_renderpng()
-            else:
-                print('Unable to write to dot file')
-
-        if not result:
-            print('Invalid file/dir provided')
+        print(self.controller.analyse(target))
 
     def do_analyse_loaded(self, args):
-        if self.js_parser.write_dotfile():
-            print('Successfully analysed loaded data')
-        else:
-            print('No data loaded')
+        print(self.controller.analyse_loaded())
 
     def do_renderpng(self, args):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
-        if self.js_parser is None:
-            self.js_parser = JSParser()
-
-        if self.js_parser.render_png():
-            im = Image.open(r'output\\classes.dot.png')
-            im.show()
-        else:
-            print('DOT file not present')
+        print(self.controller.renderpng())
 
     def do_save(self, args):
         """Saves loaded analysis, takes 2 arguments of the name and place to save the file. p for pickle,
