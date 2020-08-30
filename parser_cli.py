@@ -13,6 +13,7 @@ class ParserCLI(Cmd):
         self.controller = new_controller
 
     def do_showhelp(self, *args):
+        """Show the helpfile"""
         print(self.controller.help())
 
     def do_analyse(self, target=''):
@@ -20,6 +21,8 @@ class ParserCLI(Cmd):
         print(self.controller.analyse(target))
 
     def do_analyse_loaded(self, args):
+        """Runs analysis on loaded pickle data, only writes to DOT file, renderpng command must be run afterwards
+        to receive image output"""
         print(self.controller.analyse_loaded())
 
     def do_renderpng(self, args):
