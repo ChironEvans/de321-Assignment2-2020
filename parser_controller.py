@@ -30,13 +30,13 @@ class ParserController():
                 return('Unable to write to dot file')
         return('Invalid file/dir provided')
 
-    def analyse_loaded(self, args):
+    def analyse_loaded(self, args=None):
         if self.js_parser.write_dotfile():
             return('Successfully analysed loaded data')
         else:
             return('No data loaded')
 
-    def renderpng(self, args):
+    def renderpng(self, args=None):
         """Renders a PNG from a generated DOT file, if one is present, takes no arguments"""
         if self.js_parser is None:
             self.js_parser = JSParser()

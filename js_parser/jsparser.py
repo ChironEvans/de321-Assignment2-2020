@@ -1,24 +1,23 @@
+# Code by Chiron Evans
 import os
-import re
+from os import getcwd, path, walk, environ, pathsep, remove
+from re import findall, sub, split, search, compile
 from js_parser.pickler import Pickler
 from graphviz import render
 
 
 class JSParser:
-
     def __init__(self):
-        self.target = f'{os.getcwd()}\\input\\'
+        self.target = f'{getcwd()}\\input\\'
         self.js_classnames = []
         self.js_attributes = {}
         self.js_assocs = {}
         self.js_methods = {}
-        self.file_depth = 0
-        self.max_depth = 4
 
     def set_target(self, target):
         """Sets the directory or file as the target of analysis, one argument required, the path to target file or
-        dir. Returns True if successful, False if an invalid target it given"""
-        if target is not None and target != '':
+        dir. Returns True if successful, False if an invalid target is given"""
+        if target is not None and target.strip(' ') != '':
             self.target = target
             return True
         return False
@@ -28,42 +27,38 @@ class JSParser:
         parent directory, not nested within folders"""
         if reg_target is None:
             reg_target = self.target
-
-        if os.path.isdir(reg_target):
-            self.file_depth += 1
-            for root, dirs, files in os.walk(reg_target):
+        if path.isdir(reg_target):
+            for root, dirs, files in walk(reg_target):
                 for name in files:
                     if name.endswith('.js'):
-                        print('running file from dir')
-                        self.analyse_file(os.path.join(root, name))
-        elif os.path.isfile(reg_target):
+                        self.analyse_file(path.join(root, name))
+        elif path.isfile(reg_target):
             if reg_target.endswith('.js'):
                 self.analyse_file(reg_target)
             else:
-                print("target no js file")
                 return False
         else:
-            print('target not dir or file')
+            return False
+        if len(self.js_classnames) == 0:
             return False
         return True
 
     def analyse_file(self, file):
         """Analyses a single JS file, called by the run_regex command , should not be called directly
         """
-        print("running analysis")
-        print("File: " + file)
+
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
                 js_input += line
 
             # Remove all comment blocks
-            js_input = re.sub("\/\*(.|\n)*\*\/", '', js_input)
-            js_input = re.sub("#.*", '', js_input)
-            js_classname_raw = re.findall("class\s\w{3,}", js_input)
+            js_input = sub("/\*(.|\n)*\*/", '', js_input)
+            js_input = sub("#.*", '', js_input)
+            js_classname_raw = findall("class\s\w{3,}", js_input)
 
             for match in js_classname_raw:
-                classname = re.search("class\s\w{3,}", match)
+                classname = search("class\s\w{3,}", match)
                 s = classname.start()
                 e = classname.end()
                 classname = classname.string[s:e]
@@ -72,35 +67,37 @@ class JSParser:
                     self.js_classnames.append(classname)
 
             # Add in a large random string so that regex can split by class without removing the keyword
-            js_file_for_split = re.sub("class\s", "filjjndfs789er45jkngdrijouerga890e4jndrclass ", js_input)
-            js_file_split = re.split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
+            js_file_for_split = sub("class\s", "filjjndfs789er45jkngdrijouerga890e4jndrclass ", js_input)
+            js_file_split = split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
             bad_sectors = []
-
+            # Exit function if no valid classes found
+            if len(self.js_classnames) == 0:
+                return False
             i = 0
             while i < len(js_file_split):
                 if len(js_file_split[i]) > 5:
                     if js_file_split[i][0] + js_file_split[i][1] + js_file_split[i][2] + js_file_split[i][3] + \
                             js_file_split[i][4] == "class":
 
-                        classname = re.search("class\s\w{3,}", js_file_split[i])
+                        classname = search("class\s\w{3,}", js_file_split[i])
                         s = classname.start()
                         e = classname.end()
                         classname = classname.string[s:e]
                         classname = classname.split(" ")[1]
 
-                        js_attributes_raw = re.findall("this.\w{1,}", js_file_split[i])
+                        js_attributes_raw = findall("this.\w+", js_file_split[i])
                         js_attributes_cleaned = set([])
                         for attr in js_attributes_raw:
                             js_attributes_cleaned.add(attr.replace('this.', ''))
                         self.js_attributes[classname] = js_attributes_cleaned
 
-                        js_methods_raw = re.findall("\n\s{2}\w{2,}\s\(.*\)", js_file_split[i])
+                        js_methods_raw = findall("\n\s{2}\w{2,}\s\(.*\)", js_file_split[i])
                         js_methods_cleaned = set([])
                         for method in js_methods_raw:
                             js_methods_cleaned.add(method.strip("\n  "))
                         self.js_methods[classname] = js_methods_cleaned
 
-                        associations_raw = re.findall("new\s\w{3,}\(", js_file_split[i])
+                        associations_raw = findall("new\s\w{3,}\(", js_file_split[i])
                         associations_cleaned = set([])
                         for assoc in associations_raw:
                             associations_cleaned.add(assoc.replace("new ", '').replace("(", ''))
@@ -116,13 +113,13 @@ class JSParser:
         return True
 
     def write_dotfile(self):
-        """Writes stored information to a .dot file and renders it to a .png, no arguments needed"""
+        """Writes stored information from object fields to a .dot file and renders it to a .png, takes no arguments."""
         if self.check_self():
-            with open(f"{os.getcwd()}\\output\\classes.dot", "w+") as dot_target:
+            with open(f"{getcwd()}\\output\\classes.dot", "w") as dot_target:
                 dot_target.write('digraph "classes_test" {\ncharset="utf-8"\nrankdir=BT\n')
                 class_num = 0
                 class_index = {}
-                for js_class in self.js_classnames:
+                while class_num < len(self.js_classnames):
                     class_name = self.js_classnames[class_num]
                     class_attrs = self.js_attributes[class_name]
                     class_methods = self.js_methods[class_name]
@@ -156,35 +153,53 @@ class JSParser:
                 return False
         return False
 
-    def render_png(self):
-        """Renders a PNG file from the DOT file, called by the write_dotfile command, should not be called directly"""
+    @staticmethod
+    def render_png():
+        """Renders a PNG file from the DOT file, takes no arguments. Must have graphviz inside of the program directory or in
+        the system PATH."""
         # Convert a .dot file to .png
-        os.environ["PATH"] += os.pathsep + 'graphviz-2.38-win32/release/bin/'
-        if os.path.isfile(f'{os.getcwd()}\\output\\classes.dot'):
-            render('dot', 'png', f'{os.getcwd()}\\output\\classes.dot')
+        # TODO Un-hardcode this
+        rootdir = getcwd()
+        regex = compile('graphviz.*')
+
+        for root, dirs, files in os.walk(rootdir):
+            for adir in dirs:
+                if regex.match(adir):
+                    environ["PATH"] += pathsep + path.join(adir, 'release/bin/')
+
+        if path.isfile(f'{getcwd()}\\output\\classes.dot'):
+            render('dot', 'png', f'{getcwd()}\\output\\classes.dot')
             return True
         else:
             return False
 
     def check_self(self):
+        """Checks if data is present inside the object. Takes no aarguments"""
         if len(self.js_classnames) > 0:
             return True
         return False
 
-    def pickle_self(self, name='last_pickle'):
-        pickler = Pickler(name)
-        pickler.preserve(self.__dict__)
-        return True
+    def pickle_self(self, name='default'):
+        """Save object data to pickle file. Takes one optional argument of name"""
+        if self.check_self():
+            pickler = Pickler(name)
+            pickler.preserve(self.__dict__)
+            return True
+        return False
 
-    def load_pickle(self, name='last_pickle'):
+    def load_pickle(self, name='default'):
+        """Load object data from pickle file. Takes one optional argument of name"""
         pickler = Pickler(name)
-        if self.__dict__.update(pickler.load()) is not False:
+        if pickler.load() is not False:
+            self.__dict__.update(pickler.load())
             if self.check_self():
                 return True
         return False
 
-
-if __name__ == '__main__':
-    js_test = JSParser()
-    js_test.run_regex()
-    js_test.write_dotfile()
+    @staticmethod
+    def delete_pickle(name='default'):
+        """Deleted a pickled file. Takes one optional argument of name."""
+        if path.isfile(f'{name}.p'):
+            remove(f'{name}.p')
+            return True
+        return False

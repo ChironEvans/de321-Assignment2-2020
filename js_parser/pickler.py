@@ -1,6 +1,6 @@
 # Code by Chiron Evans
-import pickle
-import os
+from pickle import load, dump
+from os import path
 
 
 class Pickler:
@@ -9,11 +9,11 @@ class Pickler:
         self.filename = f'{self.name}.p'
 
     def preserve(self, an_object):
-        with open(self.filename, 'w+') as f:
-            pickle.dump(an_object, f, 2)
+        with open(self.filename, 'wb') as f:
+            dump(an_object, f, 2)
 
     def load(self):
-        if os.path.isfile(self.filename):
-            with open(self.filename, 'r') as f:
-                return pickle.load(f)
+        if path.isfile(self.filename):
+            with open(self.filename, 'rb') as f:
+                return load(f)
         return False
