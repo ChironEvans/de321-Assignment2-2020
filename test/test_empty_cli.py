@@ -2,21 +2,32 @@
 import io
 import unittest.mock
 import parser_cli
+<<<<<<< HEAD
+=======
+import parser_controller
+>>>>>>> view_implement
 
 
 class TestCLI(unittest.TestCase):
     def setUp(self):
+<<<<<<< HEAD
         self.cli = parser_cli.ParserCLI(None, None)
+=======
+        self.cli = parser_cli.ParserCLI(parser_controller.ParserController(None, None))
+>>>>>>> view_implement
 
     def test_prompt(self):
         self.assertEqual(">>> ", self.cli.prompt)
 
+<<<<<<< HEAD
     def test_js_parser(self):
         self.assertEqual(None, self.cli.js_parser)
 
     def test_m_cursor(self):
         self.assertEqual(None, self.cli.m_cursor)
 
+=======
+>>>>>>> view_implement
     def test_showhelp_exists(self):
         self.assertTrue("do_showhelp" in dir(self.cli))
 

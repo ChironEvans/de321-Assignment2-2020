@@ -1,6 +1,10 @@
 # Code by Chiron Evans
 import unittest
+<<<<<<< HEAD
 from js_parser import JSParser
+=======
+from js_parser.jsparser import JSParser
+>>>>>>> view_implement
 from os import getcwd, path, remove
 
 
