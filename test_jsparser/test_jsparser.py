@@ -1,10 +1,6 @@
 # Code by Chiron Evans
 import unittest
-<<<<<<< HEAD
-from js_parser import JSParser
-=======
 from js_parser.jsparser import JSParser
->>>>>>> view_implement
 from os import getcwd, path, remove
 
 
@@ -23,7 +19,7 @@ class TestJSParser(unittest.TestCase):
         self.assertFalse(self.parser.check_self())
 
     def test_set_target_valid(self):
-        new_target = f'{getcwd()}\\test\\'
+        new_target = f'{getcwd()}\\test_jsparser\\'
         expected_return = True
         self.parser.set_target(new_target)
         self.assertEqual(new_target, self.parser.target)
@@ -167,8 +163,8 @@ class TestJSParser(unittest.TestCase):
         expected_return = True
         target = f'{getcwd()}\\input\\tripList.js'
         self.parser.run_regex(target)
-        actual_return = self.parser.pickle_self('test')
-        file_exists = path.isfile(f'{getcwd()}\\test.p')
+        actual_return = self.parser.pickle_self('test_jsparser')
+        file_exists = path.isfile(f'{getcwd()}\\test_jsparser.p')
         self.assertEqual(expected_return, actual_return)
         self.assertTrue(file_exists)
 
@@ -193,14 +189,14 @@ class TestJSParser(unittest.TestCase):
         self.assertEqual(expected_return, actual_return)
 
     def test_delete_pickle_valid_name(self):
-        if not path.isfile(f'{getcwd()}\\test.p'):
+        if not path.isfile(f'{getcwd()}\\test_jsparser.p'):
             target = f'{getcwd()}\\input\\tripList.js'
             self.parser.run_regex(target)
-            self.parser.pickle_self('test')
+            self.parser.pickle_self('test_jsparser')
         expected_return = True
-        actual_return = self.parser.delete_pickle('test')
+        actual_return = self.parser.delete_pickle('test_jsparser')
 
-        file_exists = path.isfile(f'{getcwd()}\\test.p')
+        file_exists = path.isfile(f'{getcwd()}\\test_jsparser.p')
         self.assertEqual(expected_return, actual_return)
         self.assertFalse(file_exists)
 
@@ -227,26 +223,46 @@ class TestJSParser(unittest.TestCase):
         self.assertFalse(self.parser.check_self())
 
     def test_load_pickle_valid_name(self):
-        if not path.isfile(f'{getcwd()}\\test.p'):
+        if not path.isfile(f'{getcwd()}\\test_jsparser.p'):
             target = f'{getcwd()}\\input\\tripList.js'
             self.parser.run_regex(target)
-            self.parser.pickle_self('test')
+            self.parser.pickle_self('test_jsparser')
             self.assertTrue(path.isfile('test.p'))
 
         expected_return = True
-        actual_return = self.parser.load_pickle('test')
+        actual_return = self.parser.load_pickle('test_jsparser')
         self.assertEqual(expected_return, actual_return)
         self.assertTrue(self.parser.check_self())
 
+    def test_non_js_file_root(self):
+        target = f'{getcwd()}\\input\\notAJSFile.txt'
+        expected_return = False
+        actual_return = self.parser.run_regex(target)
+        self.assertEqual(expected_return, actual_return)
 
+    def test_non_js_file_nested(self):
+        target = f'{getcwd()}\\input\\nested\\notjs\\notAJSFile.txt'
+        expected_return = False
+        actual_return = self.parser.run_regex(target)
+        self.assertEqual(expected_return, actual_return)
 
+    def test_js_dupe_class(self):
+        target = f'{getcwd()}\\input\\dupeclass.js'
+        expected_return = True
+        actual_return = self.parser.run_regex(target)
+        self.assertEqual(expected_return, actual_return)
 
+    def test_js_dual_class(self):
+        target = f'{getcwd()}\\input\\dualclass.js'
+        expected_return = True
+        actual_return = self.parser.run_regex(target)
+        self.assertEqual(expected_return, actual_return)
 
-
-
-
-
-
+    def test_analyse_func_empty_file(self):
+        target = f'{getcwd()}\\input\\empty.js'
+        expected_return = False
+        actual_return = self.parser.analyse_file(target)
+        self.assertEqual(expected_return, actual_return)
 
 
 if __name__ == '__main__':
