@@ -2,8 +2,12 @@
 import os
 from os import getcwd, path, walk, environ, pathsep, remove
 from re import findall, sub, split, search, compile
+
+from js_parser.file_splitter import Splitter
 from js_parser.pickler import Pickler
 from graphviz import render
+
+from js_parser.searcher import Searcher
 
 
 class JSParser:
@@ -55,8 +59,8 @@ class JSParser:
             # Remove all comment blocks
             js_input = sub("/\*(.|\n)*\*/", '', js_input)
             js_input = sub("#.*", '', js_input)
-            js_classname_raw = findall("class\s\w{3,}", js_input)
 
+            js_classname_raw = findall("class\s\w{3,}", js_input)
             for match in js_classname_raw:
                 classname = search("class\s\w{3,}", match)
                 s = classname.start()
@@ -111,6 +115,20 @@ class JSParser:
             for bad_sector in bad_sectors:
                 js_file_split.remove(js_file_split[bad_sector])
         return True
+
+    def make_analyser(self, type):
+        if type == 'class_name':
+            return Searcher("class\s\w{3,}")
+        if type == 'attribute':
+            return Searcher("this.\w+")
+        if type == 'method':
+            return Searcher("\n\s{2}\w{2,}\s\(.*\)")
+        if type == 'association':
+            return Searcher("new\s\w{3,}\(")
+        if type == 'splitter':
+            return Splitter("new\s\w{3,}\(")
+        else:
+            return None
 
     def write_dotfile(self):
         """Writes stored information from object fields to a .dot file and renders it to a .png, takes no arguments."""
