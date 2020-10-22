@@ -5,8 +5,8 @@ from js_parser.searcher_template import SearcherTemplate
 
 
 class Searcher(SearcherTemplate):
-    def __init__(self, search_string):
-        super().__init__(search_string)
+    def __init__(self, search_string, clean_string=''):
+        super().__init__(search_string, clean_string)
 
     def find_matches(self, input_str):
         self.matches = []
@@ -17,15 +17,12 @@ class Searcher(SearcherTemplate):
             return self.matches
         return None
 
-    def remove_comments_blocks_fixed(self):
-        self.js_input = sub("/\*(.|\n)*\*/", '', self.js_input)
-        self.js_input = sub("#.*", '', self.js_input)
-
-    @abstractmethod
     def get_matches_override(self):
-        matches_raw = findall("this.\w+", self.js_input)
+        matches_raw = findall(self.search_criteria, self.js_input)
         matches_cleaned = set([])
         for match in matches_raw:
-            matches_cleaned.add(match.replace('this.', ''))
-        self.matches.append(matches_cleaned)
+            matches_cleaned.add(match.replace(self.clean_string, ''))
+        for cleaned_match in matches_cleaned:
+            self.matches.append(cleaned_match)
+
 

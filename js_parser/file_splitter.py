@@ -28,8 +28,7 @@ class Splitter(SearcherTemplate):
             match = match.split(" ")[1]
             if match not in self.matches:
                 self.matches.append(match)
-        js_file_for_split = sub(self.search_criteria, f"filjjndfs789er45jkngdrijouerga890e4jndr"
-                                                      f"{self.search_criteria} ", self.js_input)
+        js_file_for_split = sub(self.search_criteria, f"filjjndfs789er45jkngdrijouerga890e4jndrclass ", self.js_input)
         js_file_split = split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
         for item in js_file_split:
             if item[0:5] == "class":

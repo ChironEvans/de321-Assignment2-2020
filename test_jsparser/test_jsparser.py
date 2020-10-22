@@ -83,6 +83,16 @@ class TestJSParser(unittest.TestCase):
         self.assertEqual(expected_classnames, actual_classnames)
         self.assertTrue(type(self.parser.js_classnames) is list)
 
+    def test_analyse_classnames_new(self):
+        target = f'{getcwd()}\\input\\nested\\trip.js'
+        expected_return = True
+        expected_classnames = 'Trip'
+        actual_return = self.parser.run_regex(target)
+        actual_classnames = self.parser.js_classes[0].name
+        self.assertEqual(expected_return, actual_return)
+        self.assertEqual(expected_classnames, actual_classnames)
+
+
     def test_analyse_attributes(self):
         target = f'{getcwd()}\\input\\nested\\trip.js'
         expected_return = True
@@ -93,6 +103,15 @@ class TestJSParser(unittest.TestCase):
         self.assertEqual(expected_attrs, actual_attrs)
         self.assertTrue(type(self.parser.js_attributes) is dict)
         self.assertTrue(type(self.parser.js_attributes['Trip']) is set)
+
+    def test_analyse_attributes_new(self):
+        target = f'{getcwd()}\\input\\nested\\trip.js'
+        expected_return = True
+        expected_attrs = ['id', 'distance', 'time', 'duration']
+        actual_return = self.parser.run_regex(target)
+        actual_attrs = self.parser.js_classes[0].attributes
+        self.assertCountEqual(expected_attrs, actual_attrs)
+        self.assertEqual(expected_return, actual_return)
 
     def test_analyse_methods(self):
         target = f'{getcwd()}\\input\\nested\\trip.js'
@@ -105,6 +124,15 @@ class TestJSParser(unittest.TestCase):
         self.assertTrue(type(self.parser.js_methods) is dict)
         self.assertTrue(type(self.parser.js_methods['Trip']) is set)
 
+    def test_analyse_methods_new(self):
+        target = f'{getcwd()}\\input\\nested\\trip.js'
+        expected_return = True
+        expected_methods = ['constructor (tripID, tripTime, tripDistance, tripDuration)']
+        actual_return = self.parser.run_regex(target)
+        actual_methods = self.parser.js_classes[0].methods
+        self.assertEqual(expected_return, actual_return)
+        self.assertEqual(expected_methods, actual_methods)
+
     def test_analyse_association(self):
         target = f'{getcwd()}\\input\\tripList.js'
         expected_return = True
@@ -115,6 +143,15 @@ class TestJSParser(unittest.TestCase):
         self.assertEqual(expected_assocs, actual_assocs)
         self.assertTrue(type(self.parser.js_assocs) is dict)
         self.assertTrue(type(self.parser.js_assocs['TripList']) is set)
+
+    def test_analyse_association_new(self):
+        target = f'{getcwd()}\\input\\tripList.js'
+        expected_return = True
+        expected_assocs = ['Date', 'Trip']
+        actual_return = self.parser.run_regex(target)
+        actual_assocs = self.parser.js_classes[0].associations
+        self.assertCountEqual(expected_assocs, actual_assocs)
+        self.assertEqual(expected_return, actual_return)
 
     def test_self_check_valid(self):
         target = f'{getcwd()}\\input\\tripList.js'
