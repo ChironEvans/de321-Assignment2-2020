@@ -16,9 +16,6 @@ class JSParser(AnalyserFactoryMethod, ABC):
     def __init__(self):
         self.target = f'{getcwd()}\\input\\'
         self.js_classnames = []
-        self.js_attributes = {}
-        self.js_assocs = {}
-        self.js_methods = {}
         self.js_classes = []
 
     def set_target(self, target):
