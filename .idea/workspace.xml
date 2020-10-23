@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4813488-76bc-4018-957d-6140c0f14720" name="Default Changelist" comment="Created a fil">
+      <change afterPath="$PROJECT_DIR$/js_parser/AnalyserFactoryMethod.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js_parser/splitter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js_parser/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js_parser/file_splitter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js_parser/jsclass_abstract_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/jsclass_abstract_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js_parser/jsclass_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/jsclass_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js_parser/jsclass_director.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/jsclass_director.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js_parser/jsparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/jsparser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser_cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_empty_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_empty_cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_jsparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_jsparser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_mongo_cursor.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_mongo_cursor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js_parser/searcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/searcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js_parser/searcher_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/js_parser/searcher_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_jsparser/output/classes.dot" beforeDir="false" afterPath="$PROJECT_DIR$/test_jsparser/output/classes.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_jsparser/output/classes.dot.png" beforeDir="false" afterPath="$PROJECT_DIR$/test_jsparser/output/classes.dot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_jsparser/test_jsparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_jsparser/test_jsparser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Python Unit Test" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -30,19 +36,24 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1fd06Dt0HGUgCz8bjyO1ZiZx8bV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/js_parser" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ActualDocuments\Ara2020\BCDE321_Adv\Assignment3\de321-Assignment2-2020\js_parser" />
       <recent name="D:\ActualDocuments\Ara2020\BCDE321_Adv\de321-Assignment2-2020\test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -53,53 +64,60 @@
       <recent name="D:\ActualDocuments\Ara2020\BCDE321_Adv\de321-Assignment2-2020\js_parserr" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_mongo_cursor.py">
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="de321-Assignment2-2020" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_jsparser.TestJSParser.test_run_regex_empty_dir" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in test_jsparser.py">
+    <configuration name="Unittests for test_jsparser" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="de321-Assignment2-2020" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_jsparser" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_jsparser.TestJSParser.test_run_regex_empty_dir&quot;" />
+      <option name="_new_target" value="&quot;test_jsparser&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_jsparser.TestJSParser.test_run_regex_empty_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_jsparser.TestJSParser" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="de321-Assignment2-2020" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_jsparser" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_jsparser.TestJSParser.test_run_regex_empty_file&quot;" />
+      <option name="_new_target" value="&quot;test_jsparser.TestJSParser&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_jsparser.TestJSParser.test_analyse_association_new" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="de321-Assignment2-2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_jsparser" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_jsparser.TestJSParser.test_analyse_association_new&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_jsparser.TestJSParser.test_run_regex_bad_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="de321-Assignment2-2020" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_jsparser" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_jsparser.TestJSParser.test_run_regex_bad_file&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -108,36 +126,22 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test_jsparser" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_jsparser.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in test_mongo_cursor.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="de321-Assignment2-2020" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_mongo_cursor.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_jsparser/test_jsparser.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in test_mongo_cursor.py" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python tests.Unittests for test_jsparser.TestJSParser.test_run_regex_empty_dir" />
-        <item itemvalue="Python tests.Unittests for test_jsparser.TestJSParser.test_run_regex_empty_file" />
         <item itemvalue="Python tests.Unittests in test_jsparser.py" />
+        <item itemvalue="Python tests.Unittests for test_jsparser.TestJSParser.test_run_regex_bad_file" />
+        <item itemvalue="Python tests.Unittests for test_jsparser.TestJSParser.test_analyse_association_new" />
+        <item itemvalue="Python tests.Unittests for test_jsparser" />
+        <item itemvalue="Python tests.Unittests for test_jsparser.TestJSParser" />
       </list>
     </recent_temporary>
   </component>
@@ -170,6 +174,7 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added help file, initial commit" />
     <MESSAGE value="Added basic Pickle implementation using Pickler object" />
     <option name="LAST_COMMIT_MESSAGE" value="Added basic Pickle implementation using Pickler object" />
@@ -191,10 +196,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1011" y="448" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598387618769" />
-    <state x="943" y="506" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1598335716035">
+    <state x="943" y="506" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603494509825">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="707" y="376" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1597634042421" />
+    <state x="943" y="506" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603494509825" />
     <state x="943" y="506" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598335716035" />
     <state x="890" y="295" key="CommitChangelistDialog2" timestamp="1596755877626">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -204,65 +210,76 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1700" y="459" key="FileChooserDialogImpl/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1597882676942" />
-    <state width="2539" height="27" key="GridCell.Tab.0.bottom" timestamp="1598350002987">
+    <state width="2539" height="398" key="GridCell.Tab.0.bottom" timestamp="1603494443865">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="949" height="177" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597638356620" />
+    <state width="2539" height="398" key="GridCell.Tab.0.bottom/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603494443865" />
     <state width="2539" height="27" key="GridCell.Tab.0.bottom/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350002987" />
     <state width="1257" height="400" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="2539" height="27" key="GridCell.Tab.0.center" timestamp="1598350002987">
+    <state width="2539" height="398" key="GridCell.Tab.0.center" timestamp="1603494443865">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="949" height="177" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597638356619" />
+    <state width="2539" height="398" key="GridCell.Tab.0.center/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603494443865" />
     <state width="2539" height="27" key="GridCell.Tab.0.center/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350002987" />
     <state width="1257" height="400" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="2539" height="27" key="GridCell.Tab.0.left" timestamp="1598350002987">
+    <state width="2539" height="398" key="GridCell.Tab.0.left" timestamp="1603494443865">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="949" height="177" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597638356619" />
+    <state width="2539" height="398" key="GridCell.Tab.0.left/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603494443865" />
     <state width="2539" height="27" key="GridCell.Tab.0.left/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350002987" />
     <state width="1257" height="400" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="2539" height="27" key="GridCell.Tab.0.right" timestamp="1598350002987">
+    <state width="2539" height="398" key="GridCell.Tab.0.right" timestamp="1603494443865">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="949" height="177" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597638356619" />
+    <state width="2539" height="398" key="GridCell.Tab.0.right/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603494443865" />
     <state width="2539" height="27" key="GridCell.Tab.0.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350002987" />
     <state width="1257" height="400" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1597204004412" />
-    <state width="1268" height="492" key="GridCell.Tab.1.bottom" timestamp="1598350001756">
+    <state width="2539" height="492" key="GridCell.Tab.1.bottom" timestamp="1603491749148">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="2539" height="492" key="GridCell.Tab.1.bottom/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603491749148" />
     <state width="1268" height="492" key="GridCell.Tab.1.bottom/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350001756" />
-    <state width="1268" height="492" key="GridCell.Tab.1.center" timestamp="1598350001756">
+    <state width="2539" height="492" key="GridCell.Tab.1.center" timestamp="1603491749148">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="2539" height="492" key="GridCell.Tab.1.center/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603491749148" />
     <state width="1268" height="492" key="GridCell.Tab.1.center/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350001756" />
-    <state width="1268" height="492" key="GridCell.Tab.1.left" timestamp="1598350001756">
+    <state width="2539" height="492" key="GridCell.Tab.1.left" timestamp="1603491749148">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="2539" height="492" key="GridCell.Tab.1.left/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603491749148" />
     <state width="1268" height="492" key="GridCell.Tab.1.left/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350001756" />
-    <state width="1268" height="492" key="GridCell.Tab.1.right" timestamp="1598350001756">
+    <state width="2539" height="492" key="GridCell.Tab.1.right" timestamp="1603491749148">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state width="2539" height="492" key="GridCell.Tab.1.right/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603491749148" />
     <state width="1268" height="492" key="GridCell.Tab.1.right/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598350001756" />
-    <state x="298" y="311" key="SettingsEditor" timestamp="1598331506806">
+    <state x="298" y="311" key="SettingsEditor" timestamp="1603241401431">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="224" y="231" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597635178824" />
+    <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603241401431" />
     <state x="298" y="311" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598331506806" />
-    <state x="343" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1598387550110">
+    <state x="343" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1603491176918">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="171" y="254" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1597633610642" />
     <state x="257" y="389" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597615177276" />
+    <state x="343" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603491176918" />
     <state x="343" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598387550110" />
     <state x="1615" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1597198174353" />
     <state x="1090" y="618" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598261314065">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1090" y="618" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598261314065" />
-    <state x="909" y="397" width="761" height="606" key="find.popup" timestamp="1598261183599">
+    <state x="909" y="397" width="761" height="606" key="find.popup" timestamp="1603349460947">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
+    <state x="909" y="397" width="761" height="606" key="find.popup/0.0.2560.1400/-2160.-869.1440.2560@0.0.2560.1400" timestamp="1603349460947" />
     <state x="909" y="397" width="761" height="606" key="find.popup/0.0.2560.1400/3840.0.2560.1400@0.0.2560.1400" timestamp="1598261183599" />
     <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1597882388741">
       <screen x="0" y="0" width="2560" height="1400" />

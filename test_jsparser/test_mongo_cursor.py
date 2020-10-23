@@ -35,7 +35,7 @@ class TestMongoCursor(unittest.TestCase):
 
     def test_fetch_entry_valid(self):
         loop2 = asyncio.get_event_loop()
-        loop2.run_until_complete(self.mcursor.add_entry('test'))
+        loop2.run_until_complete(self.mcursor.add_entry('test_jsparser'))
         loop = asyncio.get_event_loop()
         actual_return = loop.run_until_complete(self.mcursor.fetch_entry())
         self.assertTrue(actual_return)
