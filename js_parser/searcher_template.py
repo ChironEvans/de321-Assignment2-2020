@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from re import sub, findall, search, split
+from re import sub
 
 
 class SearcherTemplate(metaclass=ABCMeta):

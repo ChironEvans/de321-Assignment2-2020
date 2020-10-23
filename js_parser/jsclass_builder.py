@@ -1,6 +1,3 @@
-from abc import ABCMeta, abstractmethod
-
-from js_parser.js_class import JSClass
 from js_parser.jsclass_abstract_builder import JSClassAbstractBuilder
 
 
@@ -9,7 +6,11 @@ class JSClassBuilder(JSClassAbstractBuilder):
         super().__init__(input_string)
 
     def add_name(self):
-        self.js_class.name = self.make_analyser('class_name').find_matches(self.input_string)[0]
+        class_name = self.make_analyser('class_name').find_matches(self.input_string)
+        if class_name is not None:
+            self.js_class.name = class_name[0]
+        else:
+            self.js_class.name = None
 
     def add_attributes(self):
         self.js_class.attributes = self.make_analyser('attribute').find_matches(self.input_string)

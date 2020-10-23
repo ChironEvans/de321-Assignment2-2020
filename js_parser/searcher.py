@@ -1,5 +1,4 @@
-from abc import ABCMeta, abstractmethod
-from re import sub, findall, search, split
+from re import findall
 
 from js_parser.searcher_template import SearcherTemplate
 

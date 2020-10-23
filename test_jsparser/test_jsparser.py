@@ -92,7 +92,6 @@ class TestJSParser(unittest.TestCase):
         self.assertEqual(expected_return, actual_return)
         self.assertEqual(expected_classnames, actual_classnames)
 
-
     def test_analyse_attributes(self):
         target = f'{getcwd()}\\input\\nested\\trip.js'
         expected_return = True

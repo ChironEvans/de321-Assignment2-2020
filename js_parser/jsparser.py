@@ -1,18 +1,18 @@
 # Code by Chiron Evans
 import os
+from abc import ABC
 from os import getcwd, path, walk, environ, pathsep, remove
-from re import findall, sub, split, search, compile
+from re import compile
 
-from js_parser.file_splitter import Splitter
+from js_parser.AnalyserFactoryMethod import AnalyserFactoryMethod
+from js_parser.splitter import Splitter
 from js_parser.jsclass_builder import JSClassBuilder
-from js_parser.jsclass_director import Director
+from js_parser.jsclass_director import JSClassDirector
 from js_parser.pickler import Pickler
 from graphviz import render
 
-from js_parser.searcher import Searcher
 
-
-class JSParser:
+class JSParser(AnalyserFactoryMethod, ABC):
     def __init__(self):
         self.target = f'{getcwd()}\\input\\'
         self.js_classnames = []
@@ -53,24 +53,23 @@ class JSParser:
     def analyse_file(self, file):
         """Analyses a single JS file, called by the run_regex command , should not be called directly
         """
-
         js_input = ''
         with open(file) as js_file:
             for line in js_file.readlines():
                 js_input += line
 
-        js_chunks = Splitter("class\s").find_matches(js_input)
+        js_chunks = self.make_analyser('splitter_class').find_matches(js_input)
         if js_chunks is None:
             return False
-        my_director = Director()
+        my_director = JSClassDirector()
         for chunk in js_chunks:
             new_builder = JSClassBuilder(chunk)
             my_director.set_builder(new_builder)
             my_director.build_class()
             new_js_class = my_director.builder.js_class
-            self.js_classes.append(new_js_class)
-            self.js_classnames.append(new_js_class.name)
-
+            if new_js_class.name is not None:
+                self.js_classes.append(new_js_class)
+                self.js_classnames.append(new_js_class.name)
         if len(self.js_classes) == 0:
             return False
         return True
@@ -117,8 +116,8 @@ class JSParser:
 
     @staticmethod
     def render_png():
-        """Renders a PNG file from the DOT file, takes no arguments. Must have graphviz inside of the program directory or in
-        the system PATH."""
+        """Renders a PNG file from the DOT file, takes no arguments. Must have graphviz inside of the program directory
+        or in the system PATH."""
         # Convert a .dot file to .png
         rootdir = getcwd()
         regex = compile('graphviz.*')
@@ -139,6 +138,10 @@ class JSParser:
         if len(self.js_classes) > 0:
             return True
         return False
+
+    def make_analyser(self, analyser_type):
+        if analyser_type == 'splitter_class':
+            return Splitter("class\s", "class ")
 
     def pickle_self(self, name='default'):
         """Save object data to pickle file. Takes one optional argument of name"""
@@ -164,3 +167,4 @@ class JSParser:
             remove(f'{name}.p')
             return True
         return False
+

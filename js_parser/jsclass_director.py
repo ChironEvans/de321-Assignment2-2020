@@ -1,7 +1,5 @@
-from js_parser.jsclass_builder import JSClassBuilder
 
-
-class Director:
+class JSClassDirector:
     def __init__(self, builder=None):
         self.builder = builder
 

@@ -1,11 +1,11 @@
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
-from js_parser.file_splitter import Splitter
-from js_parser.js_class import JSClass
+from js_parser.AnalyserFactoryMethod import AnalyserFactoryMethod
 from js_parser.searcher import Searcher
+from js_parser.js_class import JSClass
 
 
-class JSClassAbstractBuilder(metaclass=ABCMeta):
+class JSClassAbstractBuilder(AnalyserFactoryMethod):
     def __init__(self, input_string):
         self.js_class = JSClass()
         self.input_string = input_string
@@ -26,14 +26,14 @@ class JSClassAbstractBuilder(metaclass=ABCMeta):
     def add_associations(self):
         pass
 
-    def make_analyser(self, type):
-        if type == 'class_name':
+    def make_analyser(self, analyser_type):
+        if analyser_type == 'class_name':
             return Searcher("class\s\w{3,}",  "class ")
-        if type == 'attribute':
+        if analyser_type == 'attribute':
             return Searcher("this.\w+", "this.")
-        if type == 'method':
+        if analyser_type == 'method':
             return Searcher("\n\s{2}\w{2,}\s\(.*\)", "\n  ")
-        if type == 'association':
+        if analyser_type == 'association':
             return Searcher("new\s\w{3,}", "new ")
         else:
             return None

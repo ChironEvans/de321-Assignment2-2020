@@ -1,12 +1,12 @@
-from abc import ABCMeta, abstractmethod
 from re import sub, findall, search, split
 from js_parser.searcher_template import SearcherTemplate
 
 
 class Splitter(SearcherTemplate):
-    def __init__(self, search_string):
+    def __init__(self, search_string, split_string):
         super().__init__(search_string)
         self.split = []
+        self.split_string = split_string
 
     def find_matches(self, input_str):
         self.matches = []
@@ -28,7 +28,8 @@ class Splitter(SearcherTemplate):
             match = match.split(" ")[1]
             if match not in self.matches:
                 self.matches.append(match)
-        js_file_for_split = sub(self.search_criteria, f"filjjndfs789er45jkngdrijouerga890e4jndrclass ", self.js_input)
+        js_file_for_split = sub(self.search_criteria, f"filjjndfs789er45jkngdrijouerga890e4jndr{self.split_string}",
+                                self.js_input)
         js_file_split = split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
         for item in js_file_split:
             if item[0:5] == "class":
