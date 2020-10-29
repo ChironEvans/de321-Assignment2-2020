@@ -56,23 +56,22 @@ class JSParser:
             js_input = sub("/\*(.|\n)*\*/", '', js_input)
             js_input = sub("#.*", '', js_input)
             js_classname_raw = findall("class\s\w{3,}", js_input)
-
+            js_classnames_set = set([])
             for match in js_classname_raw:
                 classname = search("class\s\w{3,}", match)
                 s = classname.start()
                 e = classname.end()
                 classname = classname.string[s:e]
                 classname = classname.split(" ")[1]
-                if classname not in self.js_classnames:
-                    self.js_classnames.append(classname)
+                js_classnames_set.add(classname)
+
+            for clasname in js_classnames_set:
+                self.js_classnames.append(classname)
 
             # Add in a large random string so that regex can split by class without removing the keyword
             js_file_for_split = sub("class\s", "filjjndfs789er45jkngdrijouerga890e4jndrclass ", js_input)
             js_file_split = split("filjjndfs789er45jkngdrijouerga890e4jndr", js_file_for_split)
             bad_sectors = []
-            # Exit function if no valid classes found
-            if len(self.js_classnames) == 0:
-                return False
             i = 0
             while i < len(js_file_split):
                 if len(js_file_split[i]) > 5:

@@ -1,5 +1,5 @@
 digraph "classes_test" {
 charset="utf-8"
 rankdir=BT
-"0" [label="{TripList|tripFetch\lmerge\lcomparitors\lallMyTrips\lmergeSort\leditType\leditingTrip\lgetAvgSpeed\leditCache\lsortType\l|load ()\leditTrip (trip, type, value)\lsave ()\lgetAllTrips ()\lsortTrips (type)\lremoveTrip (trip)\lconstructor ()\lfilterTrips (type, operator, value)\lgetTripData (arr, type)\lcancelEdit ()\lmerge (left, right)\lgetAvgSpeed (trip)\lmergeSort (arr)\lconfirmEdit ()\lgetAllAvgSpeed (arr)\laddTrip (newTripTime, newTripDistance, newTripDuration)\l}", shape="record"];
+"0" [label="{TripList|comparitors\ltripFetch\leditCache\leditingTrip\lallMyTrips\lmerge\lmergeSort\lgetAvgSpeed\lsortType\leditType\l|confirmEdit ()\lmerge (left, right)\lgetAllTrips ()\laddTrip (newTripTime, newTripDistance, newTripDuration)\lgetAllAvgSpeed (arr)\lremoveTrip (trip)\lload ()\lconstructor ()\lgetAvgSpeed (trip)\lgetTripData (arr, type)\lfilterTrips (type, operator, value)\leditTrip (trip, type, value)\lcancelEdit ()\lmergeSort (arr)\lsave ()\lsortTrips (type)\l}", shape="record"];
 }
