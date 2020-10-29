@@ -130,7 +130,7 @@ class ParserController():
         else:
             return("Error: No argument given")
 
-    def do_remove(self, target=None, name='default'):
+    def remove(self, target=None, name='default'):
         """Deletes saved analysis, takes 2 arguments of the name and place to load the file from. p for pickle,
                 mdb for MongoDB,
                 sdb for MySQL DB
